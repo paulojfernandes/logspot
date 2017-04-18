@@ -85,7 +85,7 @@ queryLer();
 
 function queryLer() {
 
-    app.post("http://logspotk.webitcloud.net/home2", function (req, res) {
+    app.post(port+"/home2", function (req, res) {
         var data = "";
 
         connection.query('SELECT * from ls_empresa', function (err, rows, fields) {
@@ -110,7 +110,7 @@ function queryLer() {
 
 
 
-    app.post('http://logspotk.webitcloud.net/home', function (req, res) {
+    app.post(port+'/home', function (req, res) {
         console.log('body: ' + JSON.stringify(req.body));
         queryInserir(req, res)
         res.send("sucess")
