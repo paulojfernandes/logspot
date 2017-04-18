@@ -7,7 +7,7 @@ var http = require('http');
 
 var port = process.env.PORT || 3000;
 
-
+app.set('port',port);
 
 //NPM Module to integrate Handlerbars UI template engine with Express
 var exphbs = require('express-handlebars');
