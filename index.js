@@ -5,7 +5,7 @@ var path = require('path');
 var txt = [];
 var http = require('http');
 
-
+var port = process.env.PORT || 3000;
 
 
 
@@ -146,7 +146,5 @@ function queryLer() {
 
 
 
-app.listen(3000, function () {
-    console.log('Server up: http://localhost:3000');
-});
+app.listen(port);
 
