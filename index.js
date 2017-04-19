@@ -79,17 +79,7 @@ var wifiName = require('wifi-name');
 });*/
 
 
-// var arp = require('node-arp');
 
-// arp.getMAC('172.23.116.254', function(err, mac) {
-//     if (!err) {
-//         console.log("enn")
-//         console.log(mac);
-//     }else{
-//         console.log(err)
-//         console.log(mac);
-// }
-// });
 
 
 
