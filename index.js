@@ -58,12 +58,13 @@ var wifiName = require('wifi-name');
 
 // });
  app.post("/home3", function (req, res) {
-    wifiName().then(name => {
+   /* wifiName().then(name => {
    
         console.log(JSON.stringify(name))
-        res.send(JSON.stringify("Ola"));
+       
 
-    });
+    });*/
+      res.send(JSON.stringify("Ola"));
 });
 /*app.post('/home4', function (req, res) {
 
