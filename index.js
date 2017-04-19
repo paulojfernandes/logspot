@@ -57,7 +57,8 @@ var wifiName = require('wifi-name');
 //     console.log("Ligado:" + name);
 
 // });
- app.post("/home3", function (req, res) {
+ app.post('/home3', function (req, res) {
+      console.log("zzz");
     wifiName().then(name => {
    
         console.log(JSON.stringify(name))
