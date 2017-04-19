@@ -65,7 +65,7 @@ var wifiName = require('wifi-name');
 
     });
       
-      //res.send(JSON.stringify("Ola"));
+      
 });
 /*app.post('/home4', function (req, res) {
 
