@@ -61,7 +61,7 @@ var wifiName = require('wifi-name');
     wifiName().then(name => {
    
         console.log(JSON.stringify(name))
-        res.send(JSON.stringify("name"));
+        res.send(JSON.stringify(name));
 
     });
       
