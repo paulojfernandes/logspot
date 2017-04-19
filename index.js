@@ -64,7 +64,13 @@ var wifiName = require('wifi-name');
         res.send(JSON.stringify("name"));
 
     });*/
-      res.send(JSON.stringify("Ola"));
+         WiFiControl.scanForWiFi(function (err, response) {
+        if (err) console.log(err);
+
+        console.log(JSON.stringify(response))
+        res.send(response.networks)
+    });
+      //res.send(JSON.stringify("Ola"));
 });
 /*app.post('/home4', function (req, res) {
 
