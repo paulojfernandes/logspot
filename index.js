@@ -43,7 +43,7 @@ WiFiControl.init({
 //     console.log(response);
 // });
 
-// var triangulate = require('wifi-triangulate')
+ var triangulate = require('wifi-triangulate')
 
 // triangulate(function (err, location) {
 //   if (err) throw err
@@ -64,12 +64,11 @@ var wifiName = require('wifi-name');
         res.send(JSON.stringify("name"));
 
     });*/
-         WiFiControl.scanForWiFi(function (err, response) {
-        if (err) console.log(err);
-
-        console.log(JSON.stringify(response))
-        res.send(response.networks)
-    });
+      triangulate(function (err, location) {
+         if (err) throw err
+         console.log(location) 
+        })
+      
       //res.send(JSON.stringify("Ola"));
 });
 /*app.post('/home4', function (req, res) {
