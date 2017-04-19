@@ -64,12 +64,8 @@ var wifiName = require('wifi-name');
         res.send(JSON.stringify("name"));
 
     });*/
-      triangulate(function (err, location) {
-         if (err) throw err
-         console.log(location) 
-        })
       
-      //res.send(JSON.stringify("Ola"));
+      res.send(JSON.stringify("Ola"));
 });
 /*app.post('/home4', function (req, res) {
 
