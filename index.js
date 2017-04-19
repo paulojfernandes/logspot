@@ -58,7 +58,7 @@ var wifiName = require('wifi-name');
 
 // });
 
-app.post('/home3', function (req, res) {
+app.post("/home3", function (req, res) {
 
     wifiName().then(name => {
         console.log(JSON.stringify(name))
@@ -66,7 +66,7 @@ app.post('/home3', function (req, res) {
 
     });
 });
-app.post('/home4', function (req, res) {
+/*app.post('/home4', function (req, res) {
 
 
     WiFiControl.scanForWiFi(function (err, response) {
@@ -75,11 +75,8 @@ app.post('/home4', function (req, res) {
         console.log(JSON.stringify(response))
         res.send(response.networks)
     });
+});*/
 
-
-
-
-});
 
 // var arp = require('node-arp');
 
