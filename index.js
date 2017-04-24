@@ -17,9 +17,8 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 //Defining middleware to serve static files
 app.use('/static', express.static('public'));
-app.get('/home', function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/index.html'));
-     res.sendFile(https:\\webitcloud.net/PW/1617/AJP/index.html);
+app.get('https://webitcloud.net/PW/1617/AJP/index.html', function (req, res) {
+  
     //__dirname : It will resolve to your project folder.
 });
 
