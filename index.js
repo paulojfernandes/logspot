@@ -18,8 +18,8 @@ app.set('view engine', 'handlebars');
 //Defining middleware to serve static files
 app.use('/static', express.static('public'));
 app.get('/home', function (req, res) {
- //   res.sendFile(path.join(__dirname + '/views/index.html'));
-    res.sendFile(path.join('https://webitcloud.net' + '/PW/1617/AJP/index.html'));
+ res.sendFile(path.join(__dirname + '/views/index.html'));
+  //     res.sendFile(path.join('https://webitcloud.net' + '/PW/1617/AJP/index.html'));
    // https://webitcloud.net/PW/1617/AJP/index.html
     //__dirname : It will resolve to your project folder.
 });
