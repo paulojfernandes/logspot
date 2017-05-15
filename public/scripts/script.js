@@ -106,7 +106,7 @@ $(document).on("click", "#registar", function () {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-       // url: 'https://logspot.herokuapp.com/registos/registoActividade/',
+        url: 'https://logspot.herokuapp.com/registos/registoActividade/',
         success: function (data2) {
             console.log('success:');
             console.log(JSON.stringify(data));
