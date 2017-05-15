@@ -14,7 +14,7 @@ var cors = require('express-cors')
 
 app.use(cors({
     allowedOrigins: [
-        'github.com', 'google.com', 'webitcloud.net','logpspot.herokuapp.com'
+        'github.com', 'google.com', 'webitcloud.net/PW/1617/AJP/','logpspot.herokuapp.com'
     ]
 }))
 
