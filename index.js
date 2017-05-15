@@ -10,6 +10,13 @@ var http = require('http');
 var exphbs = require('express-handlebars');
 var app = express();
 
+var cors = require('express-cors')
+
+app.use(cors({
+    allowedOrigins: [
+        'github.com', 'google.com', 'webitcloud.net','logpspot.herokuapp.com'
+    ]
+}))
 
 app.use(require('./controllers/index'))
 
