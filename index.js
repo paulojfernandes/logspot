@@ -120,9 +120,12 @@ app.post('/home', function (req, res) {
 
 
 
+var port = process.env.PORT || 3000;
 
 
+app.listen(port)
 
-app.listen(3000, function () {
-    console.log('Server up: http://localhost:3000');
-});
+
+// app.listen(3000, function () {
+//     console.log('Server up: http://localhost:3000');
+// });
