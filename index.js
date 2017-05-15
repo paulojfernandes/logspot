@@ -66,6 +66,7 @@ app.get('/listas', function (req, res) {
     //__dirname : It will resolve to your project folder.
 });
 app.get('/registos', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
     res.sendFile(path.join(__dirname + '/views/registos.html'));
     // if (req.session.username == null & req.session.password == null) {
     //     console.log("Alguem logado212121")
