@@ -93,8 +93,8 @@ function countdw() {
 
 
 
-$(document).on("click", "#registar", function () {
-
+$(document).on("click", "#registar", function (e) {
+e.preventDefault()
     // console.log($(this).parent().attr('id'))
     var data = {}
     data.id = $(this).parent().attr('id')
