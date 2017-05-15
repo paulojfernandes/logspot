@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Pagina Principal</title>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -11,29 +12,13 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!--Scripts-->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="https://ipppt-my.sharepoint.com/personal/9150293_esmad_ipp_pt/_layouts/15/guestaccess.aspx?docid=1ec6efa9a36e64335b8cb81f5224e5f8b&authkey=Ae0tFaBNriVG5m8r1vDea9Y"></script>
-    <script src="https://logspot.herokuapp.com/static/scripts/script.js"></script>  
-    <script src="http://cdn.rawgit.com/hilios/jQuery.countdown/2.0.4/dist/jquery.countdown.min.js"></script>
-
-    <link rel="stylesheet" href="https://logspot.herokuapp.com/static/css/Login.css">
+    <!--<script src="https://localhost:3000/static/script.js"></script>-->
 
 
-    <script>
-           var map;
-
-
-
-
-        function myMap() {
-            var mapProp = {
-                center: new google.maps.LatLng(51.508742, -0.120850),
-                zoom: 5,
-                mapTypeId: 'satellite'
-            };
-            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        }
-   
     </script>
 </head>
 
@@ -58,36 +43,35 @@
         </nav>
     </div>
     <!--conteudo-->
-
     <div class="container" id="content">
+        <h2 style="text-align: center">Listas</h2>
+        <p style="text-align: center">Aqui é onde fica a lista de quiser pesquisar</p>
+        <input type="text" name="search" placeholder="Search..">
 
-        <script id="templateDadosAtividades" type="text/x-handlebars-template" data-template-example="">
-            {{#each dados}}
-            <div class="row" id="atividades">
-                <div class="col-xs-6" id="{{id_atividade}}">
-                    <h1>{{titulo}} </h1>
-                    <h3>{{tipo_atividade}} </h3>
-                    <h3>{{nome}} </h3>
-                    <h3>{{cidade}} </h3>
-                    <h3 id="dia">{{dia_realizacao}} </h3>
-                    <button class="btn btn-primary" id="registar">Registar </button>
-                </div>
+        <script id="template2" type="text/x-handlebars-template" data-template-example="">
 
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Id</th>
+                        <th>Id Localização</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each dados}}
+                    <tr>
+                        <td>{{nome}}</td>
+                        <td>{{id_empresa}}</td>
+                        <td>{{id_contacto}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
 
-                <div class="col-xs-6" id="countdown" data-countdown="{{data}}">
-
-
-                </div>
-            </div>
-           {{/each}}
-
-       
         </script>
-
-        
     </div>
     <hr>
-   
 
     <!--footer-->
     <footer class="container-fluid text-center">
@@ -97,15 +81,12 @@
 
 
 
-
     <script>
         $(function domReady($) {
-
-
             // Cache the jQuery object
             var $content = $('#content');
-          
 
+            $content.handlebars('add', '#template', { remove: false });
             // $content.handlebars('add', '#template2', { remove: false });
 
 
@@ -123,36 +104,35 @@
         var $content = $('#content');
         $(function () {
             var dados = "";
-            var data1 = [];
 
-            
+            var data1 = [];
             $.ajax({
                 type: 'POST',
                 dataType: "json",
                 contentType: 'application/json',
-                url: 'https://logspot.herokuapp.com/registoActividade',
+                url: 'http://localhost:3000/home2',
                 success: function (data) {
                     console.log("Já estou")
-                    context = {
-                        dados: data
-                    };
+                    context = { dados: data };
                     console.log(context)
-
-                    $content.handlebars('add', '#templateDadosAtividades', context, {
-                        remove: false
-                    });
-                    console.log(data[0].data)
-                    // count(data[0].dia_realizacao)
-                    countdw()
+                    $content.handlebars('remove', '#template2', context, { remove: false });
+                    $content.handlebars('add', '#template2', context, { remove: false });
                 }
             })
+
+
+
+
 
 
         });
     </script>
 
-</body>
 
+
+
+
+</body>
 
 
 

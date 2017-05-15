@@ -26,7 +26,7 @@ router.use(cookieSession({
     httpOnly: false
 
 }))
-
+var dadosAtividade = "";
 
 
 
@@ -44,6 +44,25 @@ router.post('/login', function (req2, res) {
     console.log("entrei login controllers", req2.body)
     login2 = Dados.dadosLogin(req2, res)
 });
+
+
+// router.post("/registo/enviarDadosAtivades", function (req, res) {
+//     var dados = req.body.id;
+//     console.log(dados)
+//   // res.redirect('/registos/verLocal&QR');
+//   res.send("sucess")
+
+
+// });
+
+router.post("/registos/registoActividade/", function (req, res) {
+  //res.sendFile(path.join(__dirname + '/views/lqr.html'));
+  console.log("aa")
+  res.send("Ola")
+   //dadosAtividade = Dados.receberDadosAtividade(req, res)
+
+});
+
 
 
 

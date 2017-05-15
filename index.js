@@ -80,84 +80,11 @@ app.get('/', function (req, res) {
     }
     //__dirname : It will resolve to your project folder.
 });
-
-
-
-
-
-
-// var connection = mysql.createConnection({
-//     host: 'webitcloud.net',
-//     user: 'webitclo_G502',
-//     password: 'BD1617G502590',
-//     database: 'webitclo_AJP'
+// app.get('/registos/registoActividade/',function(req,res){
+// //res.sendFile(path.join(__dirname + '/views/lqr.html'));
 // });
 
-// queryLer();
 
-
-
-// function queryLer() {
-
-// app.post("/login", function (req, res) {
-//     var data = "";
-
-//     connection.query('SELECT * from ls_empresa', function (err, rows, fields) {
-//         if (!err) {
-//             console.log('The solution is: ', rows[0].id_empresa);
-
-//             console.log("entrei")
-//             data = rows
-//             console.log(data)
-//             res.send(JSON.stringify(rows)); //replace with your data here
-
-
-
-
-//         } else {
-//             console.log('Error while performing Query.', err);
-//         }
-
-//     });
-// });
-//}
-
-
-
-
-// app.post('/login', function (req, res) {
-//     connection.query('SELECT * FROM ls_utilizador,ls_contacto WHERE ls_contacto.email="' + req.body.email + '" AND ls_utilizador.pass="' + req.body.pass + '" and ls_utilizador.id_contacto=ls_contacto.id_contacto;',
-//         function (err, rows, fields) {
-//             if (!err) {
-
-
-//                 if (rows[0] === undefined) {
-//                     //console.log(rows)
-//                     console.log(err)
-//                     // res.send({erro:"erro"})
-//                     res.status(500).send("Email ou Password Errada");
-
-
-//                 } else {
-//                     req.session.username = rows[0].nome;
-//                     req.session.password = rows[0].pass;
-//                     res.status(200).send("sucess")
-
-//                 }
-
-
-
-//                 // console.log("Alguem logado", req.session.username)
-
-//             } else {
-//                 console.log('Error while performing Query.', err);
-//                  res.status(500).send("Serviço Indisponivel, Tente Mais Tarde!");
-//             }
-//         });
-
-//    // Set the sessions.
-
-// });
 
 
 app.post('/home', function (req, res) {
