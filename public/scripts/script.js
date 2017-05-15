@@ -113,7 +113,7 @@ $(document).on("click", "#registar", function () {
             console.log(JSON.stringify(data));
             $("#content").empty()
             history.pushState(null, null, '/id=' + data.id);
-            $("#content").html("https://webitcloud.net/PW/1617/AJP/lqr.html")
+            $("#content").load("https://webitcloud.net/PW/1617/AJP/lqr.html")
        
 
 
