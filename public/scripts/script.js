@@ -106,12 +106,13 @@ $(document).on("click", "#registar", function () {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
+         crossDomain: true,
         url: 'https://logspot.herokuapp.com/registos/registoActividade/',
         success: function (data2) {
             console.log('success:');
             console.log(JSON.stringify(data));
             $("#content").empty()
-            //history.pushState(null, null, '/id=' + data.id);
+            history.pushState(null, null, '/id=' + data.id);
             $("#content").html("https://webitcloud.net/PW/1617/AJP/lqr.html")
        
 
