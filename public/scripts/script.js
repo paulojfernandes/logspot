@@ -93,8 +93,8 @@ function countdw() {
 
 
 
-$(document).on("click", "#registar", function (e) {
-e.preventDefault()
+$(document).on("click", "#registar", function () {
+
     // console.log($(this).parent().attr('id'))
     var data = {}
     data.id = $(this).parent().attr('id')
@@ -111,7 +111,7 @@ e.preventDefault()
             console.log('success:');
             console.log(JSON.stringify(data));
             $("#content").empty()
-            history.pushState(null, null, '/id=' + data.id);
+            //history.pushState(null, null, '/id=' + data.id);
             $("#content").load("https://webitcloud.net/PW/1617/AJP/lqr.html")
        
 
