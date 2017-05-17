@@ -81,6 +81,8 @@ exports.dadosLogin = function (req, res) {
 }
 
 exports.receberDadosAtividade = function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log(req.body.id)
     connection.query('SELECT ls_atividade.id_atividade, qr_code, lat, lng FROM  ls_atividade, ls_localizacao WHERE ls_atividade.id_localizacao = ls_localizacao.id_localizacao AND id_atividade =' + req.body.id + ';', function (err, rows, fields) {
         if (!err) {
