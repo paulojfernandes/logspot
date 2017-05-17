@@ -105,7 +105,7 @@ $(document).on("click", "#registar", function () {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(data),
-        contentType: 'application/jsonp',
+        contentType: 'application/json',
          crossDomain: true,
         url: 'https://logspot.herokuapp.com/registos/registoActividade/',
         success: function (data2) {
