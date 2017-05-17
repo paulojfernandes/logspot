@@ -50,6 +50,12 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 //Defining middleware to serve static files
 app.use('/static', express.static('public'));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/home', function (req, res) {
     res.sendFile(path.join(__dirname + '/views/index.html'));
     if (req.session.username == null & req.session.password == null) {
