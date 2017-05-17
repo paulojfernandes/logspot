@@ -104,6 +104,9 @@ $(document).on("click", "#registar", function () {
 
     $.ajax({
         type: 'POST',
+         headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
         data: JSON.stringify(data),
         contentType: 'application/json',         
         url: 'https://logspot.herokuapp.com/registos/registoActividade/',
