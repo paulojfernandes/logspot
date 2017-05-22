@@ -1,0 +1,48 @@
+/*Estilização da Página*/
+body {
+    background-color: lightgrey;
+    background-image: url("img/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    /*Permite que a imagem se auto ajuste ao tipo de dimensões do ecrã do uitlizador*/
+    -moz-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+#tittle{
+
+}
+
+
+#login_c{
+    width:30%;
+    height:450px;
+    background-color: white;
+    margin-top: 7%;
+}
+
+#footer{
+    width:30%;
+    height:45px;
+    text-align: right;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: lightseagreen;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#erro{
+    color: red
+}
+#erros2{
+    background-color: lightpink
+}
+

@@ -1,0 +1,122 @@
+<script src="https://logspot.herokuapp.com/static/scripts/build/qcode-decoder.min.js">
+</script>
+<script src="https://logspot.herokuapp.com/static/scripts/localizacao.js"></script>
+
+
+
+
+<script>
+    var map;
+
+    // window.onbeforeunload = function () {
+    //     return true;
+    // };
+
+
+
+    function myMap() {
+        var mapProp = {
+            center: new google.maps.LatLng(51.508742, -0.120850),
+            zoom: 5,
+            mapTypeId: 'satellite'
+        };
+        map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+</script>
+
+
+
+
+<div class="container" id="content2">
+    
+</div>
+
+<script id="templateDadosAtividades2" type="text/x-handlebars-template" data-template-example="">
+    <div class="row" id="atividade">
+
+        <h1>Atividade {{titulo}} </h1>
+
+    </div>
+
+
+
+</script>
+
+
+
+<div class="row" id="divLocalizacao">
+    <H1>Verificar Posição </H1>
+    <div class="col-md-6">
+        <div id="googleMap" style="width:100%;height:400px;"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5wc3qnKNCzEWhf-5LMO6ik1zcBkyW5kw&callback=myMap"></script>
+        <p><button class="btn btn-primary" id="obterLocalizacao">Obter Localização</button></p>
+        <div id="out"></div>
+    </div>
+</div>
+<hr>
+<div class="row" hidden id="divQR">
+    <h1>Verificar QRCode</h1>
+    <div class="col-md-6">
+        <form>
+            <h3>Obter QRCode</h3>
+            <!-- prompt the user, Camera or Gallery -->
+            <input id="qrcode" class="btn btn-primary" type="file" accept="image/*" />
+            <br>
+            <button id="descodificar" class="btn btn-primary">Descodificar</button>
+
+
+        </form>
+    </div>
+    <div class="col-md-6">
+        <div id="imgQR"></div>
+
+    </div>
+</div>
+<div class="row" hidden id="confirmarRegisto">
+
+    <h1> Está no local certo !</h1>
+    <h1> Deseja efectuar o registo</h1>
+
+    <button id="confRegisto" class="btn btn-primary">Sim</button> <button id="CancelRegisto" class="btn btn-danger">Não</button>
+
+</div>
+
+
+
+
+</div>
+
+
+
+<script src="https://logspot.herokuapp.com/static/scripts/qrcode.js"></script>
+
+
+<!--<script type="text/javascript">
+        var $content = $('#atividade');
+        $(function () {
+
+
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                contentType: 'application/json',
+                url: 'https://logspot.herokuapp.com/registo/receberDadosAtivades',
+                success: function (data) {
+                    console.log("Já estou")
+                    context = {
+                        dados: data
+                    };
+                    console.log(context)
+                    sessionStorage.setItem("ln", context.dados[0].lng)
+                    sessionStorage.setItem("la", context.dados[0].lat)
+                    sessionStorage.setItem("q", context.dados[0].qr_code)
+                     console.log(sessionStorage.getItem("ln"),sessionStorage.getItem("la"),sessionStorage.getItem("q"))
+                    $content.handlebars('add', '#templateDadosAtividades', context, {
+                        remove: false
+                    });
+                }
+            })
+
+           
+        });
+    </script>-->

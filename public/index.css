@@ -1,0 +1,72 @@
+.row-lr {
+    margin-right: 0;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 5%;
+}
+
+body {
+    background-image: url("fundo8.jpg")
+}
+
+.panel-default>.panel-heading {
+    border: 1px solid transparent;
+    background-color: lightblue;
+    border-color: #ddd;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+    background-color: white;
+    padding: 0px;
+}
+
+.panel-body>li:hover {
+    background-color: lightcyan;
+}
+
+
+/*tabela*/
+
+table,
+td,
+th {
+    border: 1px solid lightgrey;
+}
+
+.table>thead>tr>th {
+    background-color: lightblue;
+    vertical-align: bottom;
+}
+
+.table>tbody>tr>td {
+    background-color: white;
+}
+
+footer {
+    color: black;
+}
+
+h1 {
+    margin-left: 2%;
+    color: black;
+}
+
+.input-group,
+.btn-default {
+    margin: 2%;
+}
+
+#atividades {
+    background-color: lightcyan;
+    margin-top: 5px;
+}
+
+#countdown {
+    padding-top: 50px;
+    font-size: 52pt
+}
+
+.container {
+    box-shadow: 1px 1px 1px #888888;
+    background-color: white
+}

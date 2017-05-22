@@ -1,0 +1,84 @@
+<h2 style="text-align: center">
+
+    Historico Registos</h2>
+
+
+
+<script id="template2" type="text/x-handlebars-template" data-template-example="">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Id</th>
+                <th>Id Localização</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each dados}}
+            <tr>
+                <td>{{nome}}</td>
+                <td>{{id_empresa}}</td>
+                <td>{{id_contacto}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</script>
+
+
+
+<script>
+    $(function domReady($) {
+        // Cache the jQuery object
+        var $content = $('#container');
+
+        $content.handlebars('add', '#template', {
+            remove: false
+        });
+        // $content.handlebars('add', '#template2', { remove: false });
+
+
+        // Testing only!
+
+        // $content.handlebars('remove', '#template'); // Remove single template id
+        // $content.handlebars('remove'); // Remove all templates
+        window.console.log('Rendered templates: %o', $content.handlebars('get')); // Get the rendered templates for the content element
+        window.console.log('Compiled templates: %o', $content.handlebars('compiled')); // Get the compiled templates for the content element
+    });
+</script>
+
+<script type="text/javascript">
+    var $content = $('#container');
+    $(function () {
+        var dados = "";
+
+        var data1 = [];
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            contentType: 'application/json',
+            url: 'https://logspot.herokuapp.com/home2',
+            success: function (data) {
+                console.log("Já estou")
+                context = {
+                    dados: data
+                };
+                console.log(context)
+                $content.handlebars('remove', '#template2', context, {
+                    remove: false
+                });
+                $content.handlebars('add', '#template2', context, {
+                    remove: false
+                });
+            }
+        })
+
+
+
+
+
+
+    });
+</script>
