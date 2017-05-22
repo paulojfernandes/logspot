@@ -104,9 +104,7 @@ $(document).on("click", "#registar", function () {
 
     $.ajax({
         type: 'POST',
-         headers: {
-                    'Access-Control-Allow-Origin': '*'
-                },
+     headers: {'X-Requested-With': 'XMLHttpRequest'}
         crossDomain: false,
         data: JSON.stringify(data),
         contentType: 'application/json',         
