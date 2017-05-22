@@ -107,6 +107,7 @@ $(document).on("click", "#registar", function () {
          headers: {
                     'Access-Control-Allow-Origin': '*'
                 },
+        crossDomain: false,
         data: JSON.stringify(data),
         contentType: 'application/json',         
         url: 'https://logspot.herokuapp.com/registos/registoActividade/',
@@ -114,7 +115,7 @@ $(document).on("click", "#registar", function () {
             console.log('success:');
             console.log(JSON.stringify(data));
             $("#content").empty()
-            history.pushState(null, null, '/id=' + data.id);
+            //history.pushState(null, null, '/id=' + data.id);
             $("#content").load("https://webitcloud.net/PW/1617/AJP/lqr.html")
        
 
