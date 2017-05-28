@@ -6,7 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Icon da barra de separadores-->
-    <link rel="icon" href="http://localhost:3000/static/img/LogSpot.ico" type="icon">
+
+</head>
+
+<body>
+    <link rel="icon" href="https://logspot.herokuapp.com/static/img/LogSpot.ico" type="icon">
     <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -14,13 +18,13 @@
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!--Invoca a estilização em css-->
-    <link rel="stylesheet" href="http://localhost:3000/static/css/Login.css">
+    <link rel="stylesheet" href="https://logspot.herokuapp.com/static/css/Login.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="https://ipppt-my.sharepoint.com/personal/9150293_esmad_ipp_pt/_layouts/15/guestaccess.aspx?docid=1ec6efa9a36e64335b8cb81f5224e5f8b&authkey=Ae0tFaBNriVG5m8r1vDea9Y"></script>
-</head>
 
-<body>
+
+
     <div id=login_c class="container">
         <h1 id=tittle>LogSpot</h1>
         <div id="erros2">
@@ -86,13 +90,13 @@
                 type: 'POST',
                 data: JSON.stringify(data),
                 contentType: 'application/json',
-                url: 'http://localhost:3000/login',
+                url: 'https://logspot.herokuapp.com/login',
                 success: function (data) {
                     //console.log('success:');
                     console.log(data);
 
                     $("body").empty();
-                    $("body").load('http://localhost:3000/static/views/index.html');
+                    $("body").load('https://logspot.herokuapp.com/static/views/index2.html');
                 },
                 error: function (error) {
                     console.log(error);

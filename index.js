@@ -76,9 +76,9 @@ app.get('/', function (req, res) {
 
     if (req.session.username != null & req.session.password != null) {
         console.log("Alguem logado")
-        res.sendFile(path.join(__dirname + '/views/index.html'));
+        res.sendFile(path.join(__dirname + '/views/index2.html'));
     } else {
-        res.sendFile(path.join(__dirname + '/views2/Login.html'));
+        res.sendFile(path.join(__dirname + '/views/index.html'));
 
     }
     //__dirname : It will resolve to your project folder.
@@ -125,6 +125,7 @@ app.post('/home', function (req, res) {
 
 
 
-var port = process.env.PORT || 3000;
 
-app.listen(port)
+app.listen(3000, function () {
+    console.log('Server up: http://localhost:3000');
+});

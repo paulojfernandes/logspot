@@ -59,15 +59,15 @@ router.post("/registos/registoActividade/", function (req, res) {
     //res.sendFile(path.join(__dirname + '/views/lqr.html'));
     console.log("aa")
     //res.send("Ola")
-     dadosAtividade = Dados.receberDadosAtividade(req, res)
+    dadosAtividade = Dados.receberDadosAtividade(req, res)
 
 });
 
 router.post("/inserirAtividade", function (req, res) {
 
-    console.log("inserir",req.body)
+    console.log("inserir", req.body)
     //res.send("Ola")
-     dadosAtividade = Dados.inserirAtividade(req, res)
+    dadosAtividade = Dados.inserirAtividade(req, res)
 
 });
 
@@ -76,16 +76,46 @@ router.post("/obterUtilizador", function (req, res) {
 
 
     //res.send("Ola")
-     dadosAtividade = Dados.obterUser(req, res)
+    dadosAtividade = Dados.obterUser(req, res)
 
 });
 
 router.post("/alterarDadosUser", function (req, res) {
     //res.send("Ola")
-     dadosAtividade = Dados.alterarDadosUser(req, res)
+    dadosAtividade = Dados.alterarDadosUser(req, res)
 
 });
 
+router.post("/alterarPassword", function (req, res) {
+    //res.send("Ola")
+    dadosAtividade = Dados.alterarPassword(req, res)
+
+});
+
+
+router.post("/obterAtividades", function (req, res) {
+    //res.send("Ola")
+    dadosAtividade = Dados.obterAtividades(req, res)
+
+});
+
+router.post("/obterAtividadesAlter", function (req, res) {
+    //res.send("Ola")
+    dadosAtividade = Dados.obterAtividadesAlter(req, res)
+
+});
+
+router.post("/atualizarAtividade", function (req, res) {
+    //res.send("Ola")
+    dadosAtividade = Dados.alterarAtividade(req, res)
+
+});
+
+router.post("/removerAtividade", function (req, res) {
+    //res.send("Ola")
+    dadosAtividade = Dados.removerAtividade(req, res)
+
+});
 
 
 

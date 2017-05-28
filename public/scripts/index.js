@@ -49,18 +49,21 @@ $(document).ready(function () {
 
     $("#dadosPessoais").click(function () {
         $("#container").empty();
-
-
-
-    
-
-
-
         $("#container").load('https://logspot.herokuapp.com/static/views/novo/configDadosPessoais.html');
     });
     $("#alterPass").click(function () {
         $("#container").empty();
         $("#container").load('https://logspot.herokuapp.com/static/views/novo/configPass.html');
     });
+
+
+    $("#login").click(function () {
+        $("body").empty();
+        $("body").load('https://logspot.herokuapp.com/static/views/Login.html');
+    });
+
+
+
+
 
 });

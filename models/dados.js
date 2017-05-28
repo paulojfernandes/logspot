@@ -104,7 +104,7 @@ exports.importUser = function (req, res) {}
 exports.obterUser = function (req, res) {
 
 
-    connection.query('select nome, apelido,DATE_FORMAT(data_nasc, "%Y/%m/%d") as data,email from ls_utilizador,ls_contacto where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email= "'+req.session.username+'" ;', function (err, rows, fields) {
+    connection.query('select nome, apelido,DATE_FORMAT(data_nasc, "%Y/%m/%d") as data,email from ls_utilizador,ls_contacto where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email= "' + req.session.username + '" ;', function (err, rows, fields) {
         if (!err) {
             res.send(rows)
         } else {
@@ -122,10 +122,10 @@ exports.alterarDadosUser = function (req, res) {
 
     console.log(req.body)
 
-    connection.query("update ls_utilizador, ls_contacto set nome='" + req.body.nomeUser + "', apelido='" + req.body.apelidoUser + "',data_nasc='" + req.body.dataNasUser + "',email='"+req.body.emailUser+"'  where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email='"+req.session.username+"'; ", function (err, rows, fields) {
+    connection.query("update ls_utilizador, ls_contacto set nome='" + req.body.nomeUser + "', apelido='" + req.body.apelidoUser + "',data_nasc='" + req.body.dataNasUser + "',email='" + req.body.emailUser + "'  where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email='" + req.session.username + "'; ", function (err, rows, fields) {
         if (!err) {
             req.session.username = req.body.emailUser;
-               console.log( req.session.username)
+            console.log(req.session.username)
             res.send("Registo Alterado")
         } else {
             console.log('Error while performing Query.', err);
@@ -139,11 +139,36 @@ exports.alterarDadosUser = function (req, res) {
 
 }
 
-exports.obterAtividade = function (req, res) {}
+exports.obterAtividades = function (req, res) {
+
+    connection.query('SELECT  ls_atividade.id_atividade,titulo,tipo_atividade,ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%m/%d/%Y %H:%i") as data, cidade,lat,lng,cod_postal,qr_code from  ls_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  ls_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND ls_atividade.id_empresa = ls_empresa.id_empresa   AND ls_atividade.id_agenda = ls_agenda.id_agenda  AND ls_atividade.id_localizacao = ls_localizacao.id_localizacao;  ', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            res.send(rows)
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    });
+}
+
+
+
+exports.obterAtividadesAlter = function (req, res) {
+    connection.query('SELECT  ls_atividade.id_atividade,titulo,tipo_atividade,ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%Y-%m-%dT%H:%i") as data, cidade,lat,lng,cod_postal,qr_code from  ls_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  ls_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND ls_atividade.id_empresa = ls_empresa.id_empresa   AND ls_atividade.id_agenda = ls_agenda.id_agenda  AND ls_atividade.id_localizacao = ls_localizacao.id_localizacao and ls_atividade.id_atividade=' + req.body.idAtividade + ';  ', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            res.send(rows)
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    });
+}
 
 exports.inserirAtividade = function (req, res) {
 
-    connection.query('  insert into ls_agenda(dia_realizacao) values( now()); ', function (err, rows, fields) {
+    connection.query("  insert into ls_agenda(dia_realizacao) values('" + req.body.dataAtividade + "'); ", function (err, rows, fields) {
         if (!err) {
             console.log("data inserida")
         } else {
@@ -172,8 +197,52 @@ exports.inserirAtividade = function (req, res) {
 
 }
 
-exports.alterarAtividade = function (req, res) {}
+exports.alterarAtividade = function (req, res) {
 
-exports.removerAtividade = function (req, res) {}
+    connection.query(" UPDATE ls_atividade,ls_localizacao,ls_agenda SET titulo ='" + req.body.nomeAtividade + "',lat ='" + req.body.coordLat + "',lng ='" + req.body.coordLng + "',cidade = '" + req.body.cidade + "', cod_postal = '" + req.body.cod_postal + "',  qr_code = '" + req.body.qrCode + "',  dia_realizacao ='" + req.body.dataAtividade + "' WHERE ls_atividade.id_atividade ='" + req.body.idAtividade + "'  AND ls_atividade.id_agenda = ls_agenda.id_agenda AND ls_atividade.id_localizacao = ls_localizacao.id_localizacao;", function (err, rows, fields) {
+        if (!err) {
+            res.send("Atividade Alterada")
+        } else {
+            console.log('Error while performing Query.', err);
+        }
 
-//exports.receberDadosAtividade = function (req, res) {}
+    });
+
+
+
+}
+
+exports.removerAtividade = function (req, res) {    
+      connection.query('SET foreign_key_checks = 0;', function (err, rows, fields) {
+            if (err) {
+                console.log('Error while performing Query.212121');
+            }
+        });
+
+    connection.query(' delete ls_atividade, ls_agenda, ls_localizacao from ls_atividade, ls_agenda, ls_localizacao where id_atividade ='+req.body.idAtividade+' and ls_atividade.id_agenda = ls_agenda.id_agenda and ls_atividade.id_localizacao = ls_localizacao.id_localizacao; ', function (err, rows, fields) {
+        if (!err) {
+           
+            res.send("Atividade Eliminada")
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    });
+
+}
+
+exports.alterarPassword = function (req, res) {
+
+    connection.query('  update ls_utilizador,ls_contacto set pass="' + req.body.passNova + '" where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email="' + req.session.username + '" and ls_utilizador.pass="' + req.body.passAntiga + '" ;', function (err, rows, fields) {
+        if (!err) {
+            req.session.password = req.body.passNova
+            res.send("Password Alterada")
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    });
+
+
+
+}

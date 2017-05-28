@@ -1,103 +1,139 @@
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-            </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-            </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-            </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-            </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-            </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-            </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<script id="templateObterAtividades" type="text/x-handlebars-template" data-template-example="">
+
+<h1> Atividades</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Alterar</th>
+                    <th>Remover</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each dados}}
+                <tr>
+                    <td>{{id_atividade}}</td>
+                    <td>{{titulo}}</td>
+                    <td>
+                        <button id="obterAtividade-alterar" type="button" class="btn btn-secondary ">Alterar</button>
+                    </td>
+
+                    <td>
+                        <button type="button" id="removerAtividade" class="btn btn-danger">remover</button>
+                    </td>
+                </tr>
+
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</script>
+
+
+
+
+<script id="templateAlterAtividades" type="text/x-handlebars-template" data-template-example="">
+    {{#each dados}}
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Alterar Dados Atividade</h4>
+                </div>
+
+                <div class="modal-body" id="{{id_atividade}}">
+                    <form action="https://logspot.herokuapp.com/atualizarAtividade" method="post">
+                        <div class="input-group"><span class="input-group-addon">
+            <i class="glyphicon glyphicon-user"></i>
+            </span>
+                            <input id="nomeAtividade" type="text" value="{{titulo}}" class="form-control" name="nomeAtividade" placeholder="Nome da Atividade">
+                        </div>
+
+                        <div class="input-group"><span class="input-group-addon">
+            <i class="glyphicon glyphicon-user"></i>
+            </span>
+                            <input id="codPostal" type="text" value="{{cod_postal}}" class="form-control" name="codPostal" placeholder="Cod-Postal">
+                        </div>
+                        <div class="input-group"><span class="input-group-addon">
+            <i class="glyphicon glyphicon-user"></i>
+            </span>
+                            <input id="cidade" type="text" value="{{cidade}}" class="form-control" name="cidade" placeholder="Cidade">
+                        </div>
+
+                        <div class="input-group"><span class="input-group-addon">
+            <i class="glyphicon glyphicon-lock"></i>
+            </span>
+                            <input id="coordLat" type="text" value="{{lat}}" class="form-control" name="coordLat" placeholder="Coordenadas(lat)">
+                        </div>
+                        <div class="input-group"><span class="input-group-addon">
+            <i class="glyphicon glyphicon-lock"></i>
+            </span>
+                            <input id="coordLng" type="text" value="{{lng}}" class="form-control" name="coordLng" placeholder="Coordenadas(lng)">
+                        </div>
+
+                        <div class="input-group"><span class="input-group-addon">
+            <i class="glyphicon glyphicon-lock"></i>
+            </span>
+                            <input id="dataAtividade" type="datetime-local" value="{{data}}" class="form-control" name="dataAtividade" placeholder="data">
+                        </div>
+                        <div class="input-group"><span class="input-group-addon">
+            <i class="glyphicon glyphicon-user"></i>
+            </span>
+                            <input id="qrCode" type="text" value="{{qr_code}}" class="form-control" name="qrCode" placeholder="Texto QRCode">
+                        </div>
+                        <button type="submit" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                        <button type="submit" id="atualizarAtividade" class="btn btn-default">Alterar</button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        {{/each}}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    var $content = $('#container');
+    $(function () {
+
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            contentType: 'application/json',
+            url: 'https://logspot.herokuapp.com/obterAtividades',
+            success: function (data) {
+                console.log("Já estou")
+                context = {
+                    dados: data
+                };
+                console.log(context)
+
+                $content.handlebars('add', '#templateObterAtividades', context, {
+                    remove: false
+                });
+
+            }
+        })
+
+
+    });
+</script>

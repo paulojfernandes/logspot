@@ -199,12 +199,49 @@ $(document).on("click", "#alterarDadosUser", function (e) {
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
-         
+
 
         }
     });
 
 });
+
+
+$(document).on("click", "#alterarPassword", function (e) {
+    e.preventDefault();
+
+
+    if ($('#passNova').val() == $('#passNova2').val()) {
+        var data = {};
+        data.passAntiga = $('#passAntiga').val();
+        data.passNova = $('#passNova').val();
+
+
+
+        console.log(data);
+
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            url: 'https://logspot.herokuapp.com/alterarPassword',
+            success: function (data) {
+                console.log('success:');
+                console.log(JSON.stringify(data));
+
+
+            }
+        });
+
+
+
+    } else {
+        alert("passerrada")
+    }
+
+
+});
+
 
 
 
@@ -223,7 +260,7 @@ $(document).on("click", "#inserirAtividade", function (e) {
     data.coordLat = $('#coordLat').val();
     data.coordLng = $('#coordLng').val();
     data.qrCode = $('#qrCode').val();
-    data.dataAtividade = $('#dataAtividade').val();
+    data.dataAtividade = new Date($('#dataAtividade').val());
     // $('#nome').val("");
     // $('#codPostal').val("");
     // $('#cidade').val("");
@@ -242,12 +279,129 @@ $(document).on("click", "#inserirAtividade", function (e) {
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
-         
+
 
         }
     });
 
 });
+
+
+
+
+$(document).on("click", "#obterAtividade-alterar", function (e) {
+    e.preventDefault();
+
+    var row = $(this).closest("tr");
+    var idAtividade = row.find("td:eq(0)").text(); // get current row 1st TD value
+    console.log(idAtividade)
+
+    var data = {};
+    data.idAtividade = row.find("td:eq(0)").text();
+
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: 'https://logspot.herokuapp.com/obterAtividadesAlter',
+        success: function (data) {
+            console.log("Já estou")
+            context = {
+                dados: data
+            };
+            console.log(context)
+            $content.handlebars('remove', '#templateAlterAtividades')
+
+            $content.handlebars('add', '#templateAlterAtividades', context, {
+                remove: false
+            });
+
+            $("#myModal").modal("toggle");
+
+
+        }
+    })
+
+});
+
+
+
+$(document).on("click", "#removerAtividade", function (e) {
+    e.preventDefault();
+    //return confirm("Do you really want to do this?") ;
+
+    var row = $(this).closest("tr");
+    var idAtividade = row.find("td:eq(0)").text(); // get current row 1st TD value
+
+    var data = {};
+    data.idAtividade = idAtividade;
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: 'https://logspot.herokuapp.com/removerAtividade',
+        success: function (data) {
+            console.log('success:');
+            console.log(JSON.stringify(data));
+
+
+        }
+    });
+
+
+
+});
+
+
+$(document).on("click", "#atualizarAtividade", function (e) {
+    e.preventDefault();
+
+
+    var idAtividade = $(".modal-body").attr('id'); // get current row 1st TD value
+    console.log(idAtividade)
+
+    var data = {};
+    data.idAtividade = idAtividade;
+    data.nomeAtividade = $('#nomeAtividade').val();
+    data.codPostal = $('#codPostal').val();
+    data.cidade = $('#cidade').val();
+    data.coordLat = $('#coordLat').val();
+    data.coordLng = $('#coordLng').val();
+    data.qrCode = $('#qrCode').val();
+    data.dataAtividade = new Date($('#dataAtividade').val());
+    // $('#nome').val("");
+    // $('#codPostal').val("");
+    // $('#cidade').val("");
+    // $('#coordLat').val("");
+    // $('#coordLng').val("");
+    // $('#qrCode').val("");
+    // $('#dataAtividade').val("");
+
+    console.log(data);
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: 'https://logspot.herokuapp.com/atualizarAtividade',
+        success: function (data) {
+            console.log('success:');
+            console.log(JSON.stringify(data));
+
+
+        }
+    });
+
+
+
+
+
+
+
+});
+
 
 
 
