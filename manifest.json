@@ -3,10 +3,8 @@
   "short_name": "LS",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait",
-  "Scope": "/",
-  "start_url": "/",
-  "icons": null,
-  "splash_pages": null
+  "scope": "/",
+  "start_url": "/"
 }
