@@ -30,8 +30,8 @@ var dadosAtividade = "";
 
 
 
-router.post('/home2', function (req, res) {
-    dados = Dados.getDados(req, res)
+router.post('/historico', function (req, res) {
+    dados = Dados.historicoRegisto(req, res)
 });
 
 
@@ -116,6 +116,19 @@ router.post("/removerAtividade", function (req, res) {
     dadosAtividade = Dados.removerAtividade(req, res)
 
 });
+
+router.post("/efetuarRegisto", function (req, res) {
+    //res.send("Ola")
+    dadosAtividade = Dados.registarUserAtividade(req, res)
+
+});
+
+router.post("/obterAlertasAnteriores", function (req, res) {
+    //res.send("Ola")
+    dadosAtividade = Dados.obterAlertasAnteriores(req, res)
+
+});
+
 
 
 

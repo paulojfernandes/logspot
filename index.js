@@ -124,10 +124,84 @@ app.post('/home', function (req, res) {
 
 
 
+// var mongoose = require('mongoose');
 
+// mongoose.connect('mongodb://logspot:logspot2017@ds151451.mlab.com:51451/logspot');
+// mongoose.Promise = global.Promise;
+
+
+
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function () {
+
+
+//     var userName = new mongoose.Schema({
+//         nome: {
+//             type: String
+//         },
+//         pass: {
+//             type: String
+//         }
+
+//     });
+
+//     var Utilizadores = mongoose.model('Utilis', userName, "Utilizadores");
+
+
+    // Utilizadores.find({}, function (err, users) {
+    //     if (err) return console.error(err);
+    //     console.log("oooo:", users);
+    // })
+
+    // Utilizadores.find({
+    //     "nome": "paulo"
+    // }, function (err, users) {
+    //     if (err) return console.error(err);
+    //     console.log("oooo:", users);
+    // })
+
+
+
+    // Utilizadores.find({
+    //     "user": {
+    //         "nome": 'joao'
+    //     }
+    // }, function (err, users) {
+    //     if (err) return console.error(err);
+    //     console.log("oooo:", users);
+    // })
+
+
+    // var user = new Utilizadores({    
+    //         nome: "paulofer",
+    //         pass: "12345"        
+
+    // })
+    // user.save(function (err) {
+    //     if (err) throw err;
+    //     console.log('User saved successfully!');
+    // });
+
+
+//     Utilizadores.find({
+
+//         "nome": 'paulo'
+
+//     }, function (err, users) {
+//         if (err) return console.error(err);
+//         console.log("oooo:", users);
+//     })
+
+//     // we're connected!
+// });
 
 
 var port = process.env.PORT || 3000;
 
 
 app.listen(port)
+
+// app.listen(3000, function () {
+//     console.log('Server up: http://localhost:3000');
+// });

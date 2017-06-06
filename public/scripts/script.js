@@ -1,3 +1,5 @@
+var arrayDatas = [];
+
 // $(function domReady($) {
 //     // Cache the jQuery object
 //     var $content = $('#content');
@@ -32,7 +34,7 @@
 //                 type: 'POST',
 //                 dataType: "json",
 //                 contentType: 'application/json',
-//                 url: 'https://logspot.herokuapp.com/home2'
+//                 url: 'http://localhost:3000/home2'
 //             });
 //             request.done(function (data) {
 //                 //alert(JSON.stringify(data))
@@ -71,36 +73,6 @@ function countdw() {
 };
 
 
-
-
-
-function notifyMe() {
-  // Let's check if the browser supports notifications
-  if (!("Notification" in window)) {
-    alert("This browser does not support desktop notification");
-  }
-
-  // Let's check whether notification permissions have already been granted
-  else if (Notification.permission === "granted") {
-    // If it's okay let's create a notification
-    var notification = new Notification("Hi there!");
-  }
-
-  // Otherwise, we need to ask the user for permission
-  else if (Notification.permission !== "denied") {
-    Notification.requestPermission(function (permission) {
-      // If the user accepts, let's create a notification
-      if (permission === "granted") {
-        var notification = new Notification("Hi there!");
-      }
-    });
-  }
-
-  // At last, if the user has denied notifications, and you 
-  // want to be respectful there is no need to bother them any more.
-}
-
-
 // document.cookie = "paulo=PAulo"
 
 
@@ -128,7 +100,7 @@ $(document).on("click", "#registar", function () {
     // console.log($(this).parent().attr('id'))
     var data = {}
     data.id = $(this).parent().attr('id')
-    //window.location.href = "https://logspot.herokuapp.com/registos/registoActividade/:id";
+    //window.location.href = "http://localhost:3000/registos/registoActividade/:id";
 
     console.log(data);
 
@@ -136,16 +108,17 @@ $(document).on("click", "#registar", function () {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/registos/registoActividade/',
+        url: 'http://localhost:3000/registos/registoActividade/',
         success: function (data2) {
             console.log('success:');
             console.log(data2);
             sessionStorage.setItem("ln", data2[0].lng)
             sessionStorage.setItem("la", data2[0].lat)
             sessionStorage.setItem("q", data2[0].qr_code)
-            console.log(sessionStorage.getItem("ln"), sessionStorage.getItem("la"), sessionStorage.getItem("q"))
+            sessionStorage.setItem("id", data2[0].id_atividade)
+            console.log(sessionStorage.getItem("id"))
             $("#container").empty()
-            $("#container").load("https://logspot.herokuapp.com/static/views/lqr.html", function (response, status, xhr) {
+            $("#container").load("http://localhost:3000/static/views/lqr.html", function (response, status, xhr) {
                 if (status == "error") {
                     var msg = "Sorry but there was an error: ";
                     $("#error").html(msg + xhr.status + " " + xhr.statusText);
@@ -187,19 +160,71 @@ function myFunction() {
         $('[id="atividades"]').each(function () {
             console.log("entr")
             var tempo = $(this).find("#countdown").text();
-            //console.log("t:",tempo)
-            if (tempo <= "09:32:30") {
-                $(this).find("#obter").prop('disabled', true)
+            console.log("t:", tempo)
+            if ((tempo >= "01:00:00") || (tempo == "00:00:00")) {
+                $(this).find("#registar").prop('disabled', true)
             }
 
         });
-
+        // console.log(arrayDatas)
 
     }, 1000);
 }
 
 
+myFunction()
 
+
+setInterval(function () {
+
+
+    for (var i = 0; i < arrayDatas.length; i++) {
+        // arrayDatas[i].verificaçãoInicio=false
+        // console.log(arrayDatas[i])
+
+        // dataAtividade = arrayDatas[i].data2
+        var diferença = new Date(arrayDatas[i].data2) - new Date()
+        console.log(diferença)
+        if (arrayDatas[i].verificaçãoInicio == false) {
+            if (msToTime(diferença) <= "01:00:00") {
+                arrayDatas[i].verificaçãoInicio = true
+                console.log("registosAbertos")
+                $("#alert").css('color', '#00e1ff');
+
+            }
+        } else if ((arrayDatas[i].verificaçãoInicio == true) && (arrayDatas[i].verificaçãoFim == false)) {
+
+            if (msToTime(diferença) <= "00:05:00") {
+                arrayDatas[i].verificaçãoFim = true
+                console.log("registosFechados")
+
+            }
+        }
+
+    }
+
+}, 1000)
+
+
+function msToTime(diferença) {
+    var milliseconds = parseInt((diferença % 1000) / 100),
+        seconds = parseInt((diferença / 1000) % 60),
+        minutes = parseInt((diferença / (1000 * 60)) % 60),
+        hours = parseInt((diferença / (1000 * 60 * 60)) % 24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+    var tempoRestante = hours + ":" + minutes + ":" + seconds;
+    //console.log(tempoRestante)
+    return tempoRestante;
+}
+
+$(document).on("click", "#alert", function (e) {
+    e.preventDefault();
+
+     $(this).css('color', 'white');
+});
 
 $(document).on("click", "#alterarDadosUser", function (e) {
     e.preventDefault();
@@ -220,19 +245,8 @@ $(document).on("click", "#alterarDadosUser", function (e) {
     // $('#dataAtividade').val("");
 
     console.log(data);
+    ajaxEnviar("alterarDadosUser", data)
 
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/alterarDadosUser',
-        success: function (data) {
-            console.log('success:');
-            console.log(JSON.stringify(data));
-
-
-        }
-    });
 
 });
 
@@ -249,19 +263,8 @@ $(document).on("click", "#alterarPassword", function (e) {
 
 
         console.log(data);
+        ajaxEnviar("alterarPassword", data)
 
-        $.ajax({
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            url: 'https://logspot.herokuapp.com/alterarPassword',
-            success: function (data) {
-                console.log('success:');
-                console.log(JSON.stringify(data));
-
-
-            }
-        });
 
 
 
@@ -301,18 +304,9 @@ $(document).on("click", "#inserirAtividade", function (e) {
 
     console.log(data);
 
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/inserirAtividade',
-        success: function (data) {
-            console.log('success:');
-            console.log(JSON.stringify(data));
+    ajaxEnviar("inserirAtividade", data)
 
 
-        }
-    });
 
 });
 
@@ -334,7 +328,7 @@ $(document).on("click", "#obterAtividade-alterar", function (e) {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/obterAtividadesAlter',
+        url: 'http://localhost:3000/obterAtividadesAlter',
         success: function (data) {
             console.log("Já estou")
             context = {
@@ -367,18 +361,8 @@ $(document).on("click", "#removerAtividade", function (e) {
     var data = {};
     data.idAtividade = idAtividade;
 
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/removerAtividade',
-        success: function (data) {
-            console.log('success:');
-            console.log(JSON.stringify(data));
+    ajaxEnviar("removerAtividade", data)
 
-
-        }
-    });
 
 
 
@@ -411,11 +395,21 @@ $(document).on("click", "#atualizarAtividade", function (e) {
 
     console.log(data);
 
+    ajaxEnviar("atualizarAtividade", data)
+
+});
+
+
+
+/* em contrução*/
+
+$(document).on("click", "#importarUtiizadores", function (e) {
+    e.preventDefault();
     $.ajax({
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/atualizarAtividade',
+        url: 'http://localhost:3000/importar',
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
@@ -424,15 +418,58 @@ $(document).on("click", "#atualizarAtividade", function (e) {
         }
     });
 
+});
+/* */
+
+$(document).on("click", "#confRegisto", function (e) {
+    e.preventDefault();
 
 
+    var data = {};
+    data.idAtividade = sessionStorage.getItem("id");
 
-
-
+    ajaxEnviar("efetuarRegisto", data)
 
 });
 
 
 
 
-//myFunction()
+function ajaxObter(url, template, msg) {
+    var $content = $('#container');
+    $.ajax({
+        type: 'POST',
+        dataType: "json",
+        contentType: 'application/json',
+        url: 'http://localhost:3000/' + url,
+        success: function (data) {
+            console.log("Já estou")
+            context = {
+                dados: data
+            };
+            console.log(context)
+
+            $content.handlebars('add', template, context, {
+                remove: false
+            });
+
+        }
+    })
+}
+
+function ajaxEnviar(url, data, template, msg) {
+
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: 'http://localhost:3000/' + url,
+        success: function (data) {
+            console.log('success:');
+            console.log(JSON.stringify(data));
+
+
+        }
+    });
+}

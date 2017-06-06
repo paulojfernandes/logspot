@@ -1,4 +1,4 @@
-<h1 >    Historico Registos</h1>
+<h1> Historico Registos</h1>
 
 
 
@@ -7,17 +7,19 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nome</th>
-                <th>Id</th>
-                <th>Id Localização</th>
+                <th>Atividade</th>
+                <th>Tipo Atividade</th>
+                <th>Cidade</th>
+                <th>Data</th>
             </tr>
         </thead>
         <tbody>
             {{#each dados}}
             <tr>
-                <td>{{nome}}</td>
-                <td>{{id_empresa}}</td>
-                <td>{{id_contacto}}</td>
+                <td>{{titulo}}</td>
+                <td>{{tipo_atividade}}</td>
+                 <td>{{cidade}}</td>
+                <td>{{data}}</td>
             </tr>
             {{/each}}
         </tbody>
@@ -49,15 +51,15 @@
 
 <script type="text/javascript">
     var $content = $('#container');
+
     $(function () {
         var dados = "";
-
         var data1 = [];
         $.ajax({
             type: 'POST',
             dataType: "json",
             contentType: 'application/json',
-            url: 'https://logspot.herokuapp.com/home2',
+            url: 'https://logspot.herokuapp.com/historico',
             success: function (data) {
                 console.log("Já estou")
                 context = {

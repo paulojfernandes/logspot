@@ -1,18 +1,32 @@
-﻿/*Estilização da Página*/
+/*Estilização da Página*/
 body {
-    background-color: white;
-  
+    background-color: lightgrey;
+    background-image: url("img/background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     position: relative;
     /*Permite que a imagem se auto ajuste ao tipo de dimensões do ecrã do uitlizador*/
-    /*-moz-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
     -webkit-background-size: 100% 100%;
-    background-size: 100% 100%;*/
+    background-size: 100% 100%;
 }
 
-.w3-input{
-  margin-top:2%;
+#tittle{
+
+}
+
+
+#login_c{
+    width:30%;
+    height:450px;
+    background-color: white;
+    margin-top: 7%;
+}
+
+#footer{
+    width:30%;
+    height:45px;
+    text-align: right;
 }
 
 input[type=submit] {
@@ -25,26 +39,10 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
-
-.container {
-  position: relative;
-  width: 30%;
+#erro{
+    color: red
+}
+#erros2{
+    background-color: lightpink
 }
 
-.col-xs-12{
-  background-color: white;
-
-  padding-bottom: 5%;
-}
-
-
-@media (max-width: 880px) {
-  .col-xs-12{
-  margin-top: -15%;
-  }
-
-  .container {
-  width: 70%;
-}
-
-}

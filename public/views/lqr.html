@@ -88,33 +88,3 @@
 
 <script src="https://logspot.herokuapp.com/static/scripts/qrcode.js"></script>
 
-
-<!--<script type="text/javascript">
-        var $content = $('#atividade');
-        $(function () {
-
-
-            $.ajax({
-                type: 'POST',
-                dataType: "json",
-                contentType: 'application/json',
-                url: 'https://logspot.herokuapp.com/registo/receberDadosAtivades',
-                success: function (data) {
-                    console.log("Já estou")
-                    context = {
-                        dados: data
-                    };
-                    console.log(context)
-                    sessionStorage.setItem("ln", context.dados[0].lng)
-                    sessionStorage.setItem("la", context.dados[0].lat)
-                    sessionStorage.setItem("q", context.dados[0].qr_code)
-                     console.log(sessionStorage.getItem("ln"),sessionStorage.getItem("la"),sessionStorage.getItem("q"))
-                    $content.handlebars('add', '#templateDadosAtividades', context, {
-                        remove: false
-                    });
-                }
-            })
-
-           
-        });
-    </script>-->

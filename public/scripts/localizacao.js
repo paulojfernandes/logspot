@@ -29,14 +29,31 @@ $(document).ready(function () {
             });
 
             marker.setMap(map);
+
+            var lnAct = sessionStorage.getItem("ln"),
+                laAct = sessionStorage.getItem("la")
+
+            var local = new google.maps.LatLng(laAct, lnAct);
+            var myCity = new google.maps.Circle({
+                center: local,
+                radius: 500,
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.6,
+                strokeWeight: 2,
+                fillColor: "#FF0000",
+                fillOpacity: 0.2
+            });
+            myCity.setMap(map);
+
+
             map.setCenter({
                 lat: latitude,
                 lng: longitude
             });
-            map.setZoom(15)//41.403606, -8.675150
 
-            var lnAct=sessionStorage.getItem("ln"),laAct=sessionStorage.getItem("la")
-            calcularDistancia(latitude, longitude,laAct,lnAct );
+            map.setZoom(15) //41.403606, -8.675150
+
+            calcularDistancia(latitude, longitude, laAct, lnAct);
         }
 
         function error() {

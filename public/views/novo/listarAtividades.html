@@ -1,6 +1,6 @@
 <script id="templateObterAtividades" type="text/x-handlebars-template" data-template-example="">
 
-<h1> Atividades</h1>
+    <h1> Atividades</h1>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -112,28 +112,5 @@
 
 
 <script type="text/javascript">
-    var $content = $('#container');
-    $(function () {
-
-        $.ajax({
-            type: 'POST',
-            dataType: "json",
-            contentType: 'application/json',
-            url: 'https://logspot.herokuapp.com/obterAtividades',
-            success: function (data) {
-                console.log("Já estou")
-                context = {
-                    dados: data
-                };
-                console.log(context)
-
-                $content.handlebars('add', '#templateObterAtividades', context, {
-                    remove: false
-                });
-
-            }
-        })
-
-
-    });
+    ajaxObter("obterAtividades", '#templateObterAtividades')
 </script>

@@ -32,30 +32,8 @@
 </script>
 
 <script type="text/javascript">
-    var $content = $('#container');
-    $(function () {
-
-        $.ajax({
-            type: 'POST',
-            dataType: "json",
-            contentType: 'application/json',
-            url: 'https://logspot.herokuapp.com/obterUtilizador',
-            success: function (data) {
-                console.log("Já estou")
-                context = {
-                    dados: data
-                };
-                console.log(context)
-
-                $content.handlebars('add', '#templateObterUtilizador', context, {
-                    remove: false
-                });
-
-            }
-        })
-
-
-    });
+   
+ajaxObter("obterUtilizador",'#templateObterUtilizador')
 
 
 </script>

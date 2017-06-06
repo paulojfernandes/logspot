@@ -41,6 +41,10 @@ h1 {
 	font-family: 'Chonburi';
 	font-size: 40px;
 }
+h4{
+	font-size: 21px;
+	color: #02577a
+}
 
 .input-group,
 .btn-default {
@@ -94,7 +98,7 @@ section:nth-child(odd) {
 }
 
 #container {
-	margin-top: 25px;
+	margin-top: 4%;
 	margin-bottom: 250px;
 }
 
@@ -117,6 +121,8 @@ section:nth-child(odd) {
 	animation: float 5s infinite;
 	display: block;
 }
+
+
 
 
 /*

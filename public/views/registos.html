@@ -23,8 +23,8 @@
     <section id="atividades">
         <div class="row" id="atividades2">
             <h1>{{titulo}} </h1>
-          
-            <div class="col-xs-5" >
+
+            <div class="col-xs-5">
                 <h4>Tipo Atividade: </h4>
                 <h5>-{{tipo_atividade}} </h5>
                 <h4>Cidade: </h4>
@@ -85,7 +85,7 @@
     $(function () {
         var dados = "";
         var data1 = [];
-
+     
 
         $.ajax({
             type: 'POST',
@@ -94,7 +94,7 @@
             url: 'https://logspot.herokuapp.com/registoActividade',
             success: function (data) {
                 console.log("Já estou")
-                context = {
+                context = {             
                     dados: data
                 };
                 console.log(context)
@@ -105,6 +105,11 @@
                 console.log(data[0].data)
                 // count(data[0].dia_realizacao)
                 countdw()
+                arrayDatas = data
+                for (var i = 0; i < arrayDatas.length; i++) {
+                    arrayDatas[i].verificaçãoInicio = false
+                    arrayDatas[i].verificaçãoFim = false
+                }
             }
         })
 

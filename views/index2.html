@@ -4,46 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="https://logspot.herokuapp.com/static/manifest.json">
     <title>mockup teste</title>
 
     <!--Icon da barra de separadores-->
     <link rel="icon" href="https://logspot.herokuapp.com/static/css/LogSpot.ico" type="icon">
+     <link rel="manifest" href="https://logspot.herokuapp.com/static/manifest.json">
 </head>
 
-   <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- Custom CSS -->
-    <link href="https://logspot.herokuapp.com/static/css/sb-admin.css" rel="stylesheet">
-    <link href="https://logspot.herokuapp.com/static/css/index.css" rel="stylesheet">
-    <script src="https://logspot.herokuapp.com/static/scripts/index.js"></script>
+<!-- Custom CSS -->
+<link href="https://logspot.herokuapp.com/static/css/sb-admin.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.0.4/dist/jquery.countdown.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-    <script src="https://ipppt-my.sharepoint.com/personal/9150293_esmad_ipp_pt/_layouts/15/guestaccess.aspx?docid=1ec6efa9a36e64335b8cb81f5224e5f8b&authkey=Ae0tFaBNriVG5m8r1vDea9Y"></script>
-    <script src="https://logspot.herokuapp.com/static/scripts/script.js"></script>
+<link href="https://logspot.herokuapp.com/static/css/index.css" rel="stylesheet">
+<script src="https://logspot.herokuapp.com/static/scripts/index.js"></script>
 
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<script src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.0.4/dist/jquery.countdown.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script src="https://ipppt-my.sharepoint.com/personal/9150293_esmad_ipp_pt/_layouts/15/guestaccess.aspx?docid=1ec6efa9a36e64335b8cb81f5224e5f8b&authkey=Ae0tFaBNriVG5m8r1vDea9Y"></script>
+<script src="https://logspot.herokuapp.com/static/scripts/script.js"></script>
 
 
 
-    <!-- Custom Fonts -->
-    <!--<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
+
+
+<!-- Custom Fonts -->
+<!--<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -52,9 +54,6 @@
 
 
 <body>
-
-
-
 
 
 
@@ -72,104 +71,52 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand"><img class="img" src="https://logspot.herokuapp.com/static/logo-06.png" style="max-width: 200px;margin-top: -15px; display:inline-block;"></a>
             </div>
             <!-- Top Menu Items -->
+
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                    <a id="alert"  href="#" class="dropdown-toggle" data-toggle="dropdown"><i  class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown" id="container3">
+
+                        <script id="alertas" type="text/x-handlebars-template" data-template-example="">
+
+                            {{#each dados}}
+                            <li class="message-preview">
+                                <a href="#">
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading">
-                                            <strong>John Smith</strong>
+                                            <strong>{{titulo}}</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        <p>{{msg_alerta}}</p>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
+                                </a>
+                            </li>
+
+                            {{/each}}
+
+                            <li class="message-footer">
+                                <a href="#">Read All New Messages</a>
+                            </li>
+                        </script>
+
+
+
+
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a id="dadosPessoais" href="#"><i class="fa fa-fw fa-list"></i> Perfil</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a id="alterPass" href="#"><i class="fa fa-fw fa-key"></i> Alterar Password</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -185,18 +132,17 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
 
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a id="registo">Registo</a></li>
-                    <li><a id="historico">Histórico</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-fw fa-home" aria-hidden="true"></i>Home</a></li>
+                    <li>
+                        <a id="registo"> <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Registo</a>
+                    </li>
+                    <li>
+                        <a id="historico"> <i class="fa fa-fw fa-bookmark" aria-hidden="true"></i>Histórico</a>
+                    </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a id="dadosPessoais" href="#"><i class="fa fa-fw fa-list"></i> Dados Pessoais</a>
-                    </li>
-                    <li>
-                        <a id="alterPass" href="#"><i class="fa fa-fw fa-key"></i> Alterar Password</a>
-                    </li>
+
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-tasks"></i> Atividades <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
@@ -292,8 +238,39 @@
     <!-- /#wrapper -->
 
 
+    <script type="text/javascript">
+        var $content = $('#container3');
+
+        $(function () {
+            var dados = "";
+            var data1 = [];
+         
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                contentType: 'application/json',
+                url: 'https://logspot.herokuapp.com/obterAlertasAnteriores',
+                success: function (data) {
+                    console.log("Já estou")
+                    context = {
+                     
+                        dados: data
+                    };
+                    console.log(context)
+                    $content.handlebars('remove', '#alertas');
+                    $content.handlebars('add', '#alertas', context, {
+                        remove: false
+                    });
+                }
+            })
 
 
+
+
+
+
+        });
+    </script>
 
 </body>
 
