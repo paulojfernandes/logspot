@@ -2,7 +2,7 @@
   "name": "LogSpot",
   "short_name": "LS",
   "theme_color": "#2196f3",
-  "background_color": "#2196f3",
+  "background_color": "#01303f",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",
