@@ -7,7 +7,7 @@
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
-  "icons":{ 
+  "icons":[{ 
   "128": "https://logspot.herokuapp.com/static/logo.png" 
-}
+}]
 }
