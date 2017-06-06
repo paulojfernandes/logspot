@@ -8,6 +8,6 @@
   "scope": "/",
   "start_url": "/",
   "icons":{ 
-  "128": "https://logspot.herokuapp.com/public/logo.png" 
+  "128": "https://logspot.herokuapp.com/static/logo.png" 
 }
 }
