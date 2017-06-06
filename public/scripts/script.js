@@ -34,7 +34,7 @@ var arrayDatas = [];
 //                 type: 'POST',
 //                 dataType: "json",
 //                 contentType: 'application/json',
-//                 url: 'http://localhost:3000/home2'
+//                 url: 'https://logspot.herokuapp.com/home2'
 //             });
 //             request.done(function (data) {
 //                 //alert(JSON.stringify(data))
@@ -100,7 +100,7 @@ $(document).on("click", "#registar", function () {
     // console.log($(this).parent().attr('id'))
     var data = {}
     data.id = $(this).parent().attr('id')
-    //window.location.href = "http://localhost:3000/registos/registoActividade/:id";
+    //window.location.href = "https://logspot.herokuapp.com/registos/registoActividade/:id";
 
     console.log(data);
 
@@ -108,7 +108,7 @@ $(document).on("click", "#registar", function () {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'http://localhost:3000/registos/registoActividade/',
+        url: 'https://logspot.herokuapp.com/registos/registoActividade/',
         success: function (data2) {
             console.log('success:');
             console.log(data2);
@@ -118,7 +118,7 @@ $(document).on("click", "#registar", function () {
             sessionStorage.setItem("id", data2[0].id_atividade)
             console.log(sessionStorage.getItem("id"))
             $("#container").empty()
-            $("#container").load("http://localhost:3000/static/views/lqr.html", function (response, status, xhr) {
+            $("#container").load("https://logspot.herokuapp.com/static/views/lqr.html", function (response, status, xhr) {
                 if (status == "error") {
                     var msg = "Sorry but there was an error: ";
                     $("#error").html(msg + xhr.status + " " + xhr.statusText);
@@ -328,7 +328,7 @@ $(document).on("click", "#obterAtividade-alterar", function (e) {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'http://localhost:3000/obterAtividadesAlter',
+        url: 'https://logspot.herokuapp.com/obterAtividadesAlter',
         success: function (data) {
             console.log("Já estou")
             context = {
@@ -409,7 +409,7 @@ $(document).on("click", "#importarUtiizadores", function (e) {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'http://localhost:3000/importar',
+        url: 'https://logspot.herokuapp.com/importar',
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
@@ -441,7 +441,7 @@ function ajaxObter(url, template, msg) {
         type: 'POST',
         dataType: "json",
         contentType: 'application/json',
-        url: 'http://localhost:3000/' + url,
+        url: 'https://logspot.herokuapp.com/' + url,
         success: function (data) {
             console.log("Já estou")
             context = {
@@ -464,7 +464,7 @@ function ajaxEnviar(url, data, template, msg) {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'http://localhost:3000/' + url,
+        url: 'https://logspot.herokuapp.com/' + url,
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
