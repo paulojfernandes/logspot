@@ -76,7 +76,10 @@ app.get('/', function (req, res) {
 
     if (req.session.username != null & req.session.password != null) {
         console.log("Alguem logado")
-        res.sendFile(path.join(__dirname + '/views/index2.html'));
+        if (req.session.typeUser == 1)
+            res.sendFile(path.join(__dirname + '/views/index2.html'));
+        else if (req.session.typeUser == 2)
+            res.sendFile(path.join(__dirname + '/views/index3.html'));
     } else {
         res.sendFile(path.join(__dirname + '/views/index.html'));
 
@@ -149,39 +152,39 @@ app.post('/home', function (req, res) {
 //     var Utilizadores = mongoose.model('Utilis', userName, "Utilizadores");
 
 
-    // Utilizadores.find({}, function (err, users) {
-    //     if (err) return console.error(err);
-    //     console.log("oooo:", users);
-    // })
+// Utilizadores.find({}, function (err, users) {
+//     if (err) return console.error(err);
+//     console.log("oooo:", users);
+// })
 
-    // Utilizadores.find({
-    //     "nome": "paulo"
-    // }, function (err, users) {
-    //     if (err) return console.error(err);
-    //     console.log("oooo:", users);
-    // })
-
-
-
-    // Utilizadores.find({
-    //     "user": {
-    //         "nome": 'joao'
-    //     }
-    // }, function (err, users) {
-    //     if (err) return console.error(err);
-    //     console.log("oooo:", users);
-    // })
+// Utilizadores.find({
+//     "nome": "paulo"
+// }, function (err, users) {
+//     if (err) return console.error(err);
+//     console.log("oooo:", users);
+// })
 
 
-    // var user = new Utilizadores({    
-    //         nome: "paulofer",
-    //         pass: "12345"        
 
-    // })
-    // user.save(function (err) {
-    //     if (err) throw err;
-    //     console.log('User saved successfully!');
-    // });
+// Utilizadores.find({
+//     "user": {
+//         "nome": 'joao'
+//     }
+// }, function (err, users) {
+//     if (err) return console.error(err);
+//     console.log("oooo:", users);
+// })
+
+
+// var user = new Utilizadores({    
+//         nome: "paulofer",
+//         pass: "12345"        
+
+// })
+// user.save(function (err) {
+//     if (err) throw err;
+//     console.log('User saved successfully!');
+// });
 
 
 //     Utilizadores.find({

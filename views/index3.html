@@ -124,16 +124,39 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
 
-                    <li class="active"><a href="#"><i class="fa fa-fw fa-home" aria-hidden="true"></i>Home</a></li>
+                 
                     <li>
-                        <a href="#" id="registo"> <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Registo</a>
+                        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a href="#" id="historico"> <i class="fa fa-fw fa-bookmark" aria-hidden="true"></i>Histórico</a>
-                    </li>
-                
 
-                  
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-tasks"></i> Atividades <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a id="act_list" href="#"><i class="fa fa-fw fa-list"></i> Listar</a>
+                            </li>
+                            <li>
+                                <a id="act_add" href="#"><i class="fa fa-fw fa-plus"></i>Adicionar</a>
+                            </li>
+                            <li>
+                                <a id="act_Qr" href="#"><i class="fa fa-fw fa-qrcode"></i>Gerar QRCode</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="user_import" href="#"><i class="fa fa-fw fa-users"></i> Importar Utilizadores</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-lock"></i> Administradores <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo1" class="collapse">
+                            <li>
+                                <a id="user_admin_add" href="#"><i class="fa fa-fw fa-plus"></i> Adicionar</a>
+                            </li>
+                            <li>
+                                <a id="user_admin_add" href="#"><i class="fa fa-fw fa-minus"></i> Remover</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

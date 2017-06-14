@@ -1,10 +1,14 @@
     var lines = [];
 
+    $(document).find("#importarUtiizadores").prop('disabled', true)
+
     function handleFiles(files) {
     	// Check for the various File API support.
     	if (window.FileReader) {
     		// FileReader are supported.
     		getAsText(files[0]);
+
+
     	} else {
     		alert('FileReader are not supported in this browser.');
     	}
@@ -30,6 +34,17 @@
     	while (allTextLines.length) {
     		lines.push(allTextLines.shift().split(';'));
     	}
+    	if (lines.length == 0 || lines.length == 1) {
+
+    		$(document).find("#importarUtiizadores").prop('disabled', true)
+
+    	} else {
+    		$(document).find("#importarUtiizadores").prop('disabled', false)
+
+    	}
+
+
+
     	console.log(lines);
     	drawOutput(lines);
     }
@@ -52,8 +67,10 @@
     			firstNameCell.appendChild(document.createTextNode(lines[i][j]));
     		}
     	}
-    
+
 
     	console.log(lines)
 
     }
+
+

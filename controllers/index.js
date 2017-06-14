@@ -130,6 +130,30 @@ router.post("/obterAlertasAnteriores", function (req, res) {
 });
 
 
+router.post("/importUser", function (req, res) {
+    //res.send("Ola")
+    dadosAtividade = Dados.importUser(req, res)
+
+});
+
+router.post("/obterUser", function (req, res) {
+    res.send({
+        "user": req.session.username
+    })
+
+
+});
+
+// router.post("/logOut", function (req, res) {
+//     req.session = null
+//     res.redirect(req.get('referer'));
+ 
+
+
+// });
+
+
+
 
 
 module.exports = router

@@ -19,18 +19,34 @@
 <h1> Atividades </h1>
 
 <script id="templateDadosAtividades" type="text/x-handlebars-template" data-template-example="">
+
+    <h1> {{ msg}} </h1>
+
     {{#each dados}}
     <section id="atividades">
         <div class="row" id="atividades2">
             <h1>{{titulo}} </h1>
 
             <div class="col-xs-5">
-                <h4>Tipo Atividade: </h4>
-                <h5>-{{tipo_atividade}} </h5>
-                <h4>Cidade: </h4>
-                <h5>-{{cidade}} </h5>
-                <h4>Dia Realização </h4>
-                <h5 id="dia">-{{data}} </h5>
+                <div class="col-sm-6">
+                    <h4>Tipo Atividade: </h4>
+                    <h5>-{{tipo_atividade}} </h5>
+                    <h4>Coordenadas </h4>
+                    <h5 id="lat">{{lat}} </h5>
+                    <h5 id="lng">{{lng}} </h5>
+
+
+                </div>
+                <div class="col-sm-6">
+                    <h4>Dia Realização </h4>
+                    <h5 id="dia">-{{data}} </h5>
+                    <h4>Cidade: </h4>
+                    <h5>-{{cidade}} </h5>
+                </div>
+
+
+
+
 
             </div>
 
@@ -42,7 +58,8 @@
 
 
             <div class="col-md-2" id="{{id_atividade}}">
-                <button style="vertical-align: middle" class="btn btn-primary" id="registar">Registar </button>
+                <button style="vertical-align: middle" data-toggle="modal" data-target="#modalMapa" class="btn btn-primary" id="verMapa">  <i class="fa fa-map-marker fa-5x"></i> <br>  Local</button>
+                <button style="vertical-align: middle" class="btn btn-primary" id="registar"> <i class="fa fa-chevron-right fa-5x"></i> <br>Registo </button>
 
             </div>
         </div>
@@ -55,6 +72,25 @@
 
 
 
+
+
+
+
+<!-- Modal -->
+<div id="modalMapa" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
 
 
@@ -85,7 +121,7 @@
     $(function () {
         var dados = "";
         var data1 = [];
-     
+
 
         $.ajax({
             type: 'POST',
@@ -93,23 +129,29 @@
             contentType: 'application/json',
             url: 'https://logspot.herokuapp.com/registoActividade',
             success: function (data) {
-                console.log("Já estou")
-                context = {             
-                    dados: data
-                };
+                if (data.length == 0) {
+                    context = {
+                        msg: "Não Existem Atividades Neste Momento "
+                    };
+                } else {
+                    console.log("Já estou")
+                    context = {
+                        dados: data
+                    };
+                }
                 console.log(context)
 
                 $content.handlebars('add', '#templateDadosAtividades', context, {
                     remove: false
                 });
-                console.log(data[0].data)
+
                 // count(data[0].dia_realizacao)
                 countdw()
-                arrayDatas = data
-                for (var i = 0; i < arrayDatas.length; i++) {
-                    arrayDatas[i].verificaçãoInicio = false
-                    arrayDatas[i].verificaçãoFim = false
-                }
+                // arrayDatas = data
+                // for (var i = 0; i < arrayDatas.length; i++) {
+                //     arrayDatas[i].verificaçãoInicio = false
+                //     arrayDatas[i].verificaçãoFim = false
+                // }
             }
         })
 

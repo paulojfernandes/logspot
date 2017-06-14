@@ -1,62 +1,5 @@
 var arrayDatas = [];
 
-// $(function domReady($) {
-//     // Cache the jQuery object
-//     var $content = $('#content');
-
-
-//     // $content.handlebars('add', '#template', { remove: false });
-//     $content.handlebars('add', '#template2', {
-//         remove: false
-//     });
-
-//     // Testing only!
-
-//     // $content.handlebars('remove', '#template'); // Remove single template id
-//     // $content.handlebars('remove'); // Remove all templates
-//     window.console.log('Rendered templates: %o', $content.handlebars('get')); // Get the rendered templates for the content element
-//     window.console.log('Compiled templates: %o', $content.handlebars('compiled')); // Get the compiled templates for the content element
-
-
-
-
-
-//     var $content = $('#content');
-
-//     $(function () {
-
-//         function atualizar() {
-//             console.log("entrei")
-
-//             //query2()
-
-//             var request = $.ajax({
-//                 type: 'POST',
-//                 dataType: "json",
-//                 contentType: 'application/json',
-//                 url: 'https://logspot.herokuapp.com/home2'
-//             });
-//             request.done(function (data) {
-//                 //alert(JSON.stringify(data))
-//                 context = {
-//                     dados: data
-//                 };
-//                 console.log(context)
-//                 $content.handlebars('remove', '#template2', context, {
-//                     remove: false
-//                 });
-//                 $content.handlebars('add', '#template2', context, {
-//                     remove: false
-//                 });
-//             })
-
-//         };
-
-
-//         atualizar()
-//     });
-
-// });
 
 function countdw() {
 
@@ -73,83 +16,24 @@ function countdw() {
 };
 
 
-// document.cookie = "paulo=PAulo"
 
-
-// function getCookie() {
-//     var c_name = document.cookie; // listando o nome de todos os cookies
-//     if (c_name != undefined && c_name.length > 0) // verificando se o mesmo existe
-//     {
-//         var posCookie = c_name.indexOf("paulo"); // checando se existe o cookieSeuNome 
-//         if (posCookie >= 0) //se existir o cookie mostra um alert no browser
-//         {
-//             alert("Cookie Existe!!!");
-//             console.log(posCookie)
-//         } else
-//             alert("Cookie não existe!!!");
-//         console.log(posCookie)
-//     }
-
-
-// }
-
-
+var pos = false;
 
 $(document).on("click", "#registar", function () {
+    var lat = $(this).parent().parent().find("#lat").text()
+    var lng = $(this).parent().parent().find("#lng").text()
+
+
 
     // console.log($(this).parent().attr('id'))
     var data = {}
     data.id = $(this).parent().attr('id')
     //window.location.href = "https://logspot.herokuapp.com/registos/registoActividade/:id";
 
-    console.log(data);
 
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/registos/registoActividade/',
-        success: function (data2) {
-            console.log('success:');
-            console.log(data2);
-            sessionStorage.setItem("ln", data2[0].lng)
-            sessionStorage.setItem("la", data2[0].lat)
-            sessionStorage.setItem("q", data2[0].qr_code)
-            sessionStorage.setItem("id", data2[0].id_atividade)
-            console.log(sessionStorage.getItem("id"))
-            $("#container").empty()
-            $("#container").load("https://logspot.herokuapp.com/static/views/lqr.html", function (response, status, xhr) {
-                if (status == "error") {
-                    var msg = "Sorry but there was an error: ";
-                    $("#error").html(msg + xhr.status + " " + xhr.statusText);
-                } else {
-                    var $content2 = $('#content2');
+    // verificar posição 
 
-                    $content2.handlebars('add', '#templateDadosAtividades2', data2[0], {
-                        remove: false
-                    });
-
-                    window.console.log('Rendered templates: %o', $content2.handlebars('get'));
-                }
-            })
-
-
-
-            // history.pushState(null, null, 'registo/id=' + data.id);
-
-
-
-        }
-    });
-
-
-
-
-
-
-
-
-
+    geoFindMe(lat, lng, data)
 });
 
 
@@ -158,11 +42,11 @@ function myFunction() {
 
 
         $('[id="atividades"]').each(function () {
-            console.log("entr")
+            // console.log("entr")
             var tempo = $(this).find("#countdown").text();
-            console.log("t:", tempo)
+            // console.log("t:", tempo)
             if ((tempo >= "01:00:00") || (tempo == "00:00:00")) {
-                $(this).find("#registar").prop('disabled', true)
+                // $(this).find("#registar").prop('disabled', true)
             }
 
         });
@@ -176,20 +60,22 @@ myFunction()
 
 
 setInterval(function () {
-
+    var $content3 = $('#container3');
+    var alertas = false;
 
     for (var i = 0; i < arrayDatas.length; i++) {
         // arrayDatas[i].verificaçãoInicio=false
-        // console.log(arrayDatas[i])
+        //   console.log(arrayDatas[i])
 
         // dataAtividade = arrayDatas[i].data2
         var diferença = new Date(arrayDatas[i].data2) - new Date()
-        console.log(diferença)
+        //console.log(diferença)
         if (arrayDatas[i].verificaçãoInicio == false) {
             if (msToTime(diferença) <= "01:00:00") {
                 arrayDatas[i].verificaçãoInicio = true
+                alertas = true;
                 console.log("registosAbertos")
-                $("#alert").css('color', '#00e1ff');
+                // $("#alert").css('color', '#00e1ff');
 
             }
         } else if ((arrayDatas[i].verificaçãoInicio == true) && (arrayDatas[i].verificaçãoFim == false)) {
@@ -197,9 +83,33 @@ setInterval(function () {
             if (msToTime(diferença) <= "00:05:00") {
                 arrayDatas[i].verificaçãoFim = true
                 console.log("registosFechados")
+                alertas = true;
 
             }
         }
+
+    }
+    if (alertas == true) {
+        $("#alert").css('color', '#00e1ff');
+        // $.ajax({
+        //     type: 'POST',
+        //     dataType: "json",
+        //     contentType: 'application/json',
+        //     url: 'https://logspot.herokuapp.com/obterAlertasAnteriores',
+        //     success: function (data) {
+        //         console.log("Já estou")
+        //         context = {
+
+        //             dados: data
+        //         };
+        //         console.log(context)
+        //         $content3.handlebars('remove', '#alertas');
+        //         $content3.handlebars('add', '#alertas', context, {
+        //             remove: false
+        //         });
+        //     }
+        // })
+
 
     }
 
@@ -223,7 +133,7 @@ function msToTime(diferença) {
 $(document).on("click", "#alert", function (e) {
     e.preventDefault();
 
-     $(this).css('color', 'white');
+    $(this).css('color', 'white');
 });
 
 $(document).on("click", "#alterarDadosUser", function (e) {
@@ -401,25 +311,7 @@ $(document).on("click", "#atualizarAtividade", function (e) {
 
 
 
-/* em contrução*/
 
-$(document).on("click", "#importarUtiizadores", function (e) {
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/importar',
-        success: function (data) {
-            console.log('success:');
-            console.log(JSON.stringify(data));
-
-
-        }
-    });
-
-});
-/* */
 
 $(document).on("click", "#confRegisto", function (e) {
     e.preventDefault();
@@ -427,11 +319,42 @@ $(document).on("click", "#confRegisto", function (e) {
 
     var data = {};
     data.idAtividade = sessionStorage.getItem("id");
-
+    data.tipoRegisto = 1
     ajaxEnviar("efetuarRegisto", data)
-
+    gravarLocalização()
 });
 
+
+function gravarLocalização() {
+    data = {}
+    data.id = 0
+    console.log("entrei")
+    var lnAct = sessionStorage.getItem("ln"),
+        laAct = sessionStorage.getItem("la")
+
+    geoFindMe(laAct, lnAct, data)
+
+}
+
+
+
+$(document).on("click", "#logOut", function (e) {
+    e.preventDefault();
+
+    //ajaxEnviar("logOut")
+
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+
+    location.reload()
+
+});
 
 
 
