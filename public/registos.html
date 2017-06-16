@@ -1,0 +1,107 @@
+
+
+
+
+    <script>
+           var map;
+
+
+
+
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+                mapTypeId: 'satellite'
+            };
+            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+   
+    </script>
+
+
+
+
+
+        <script id="templateDadosAtividades" type="text/x-handlebars-template" data-template-example="">
+            {{#each dados}}
+            <div class="row" id="atividades">
+                <div class="col-xs-6" id="{{id_atividade}}">
+                    <h1>{{titulo}} </h1>
+                    <h3>{{tipo_atividade}} </h3>
+                    <h3>{{nome}} </h3>
+                    <h3>{{cidade}} </h3>
+                    <h3 id="dia">{{dia_realizacao}} </h3>
+                    <button class="btn btn-primary" id="registar">Registar </button>
+                </div>
+
+
+                <div class="col-xs-6" id="countdown" data-countdown="{{data}}">
+
+
+                </div>
+            </div>
+           {{/each}}
+
+       
+        </script>
+
+
+   
+
+
+
+
+    <script>
+        $(function domReady($) {
+
+
+            // Cache the jQuery object
+            var $content = $('#container');
+          
+
+            // $content.handlebars('add', '#template2', { remove: false });
+
+
+            // Testing only!
+
+            // $content.handlebars('remove', '#template'); // Remove single template id
+            // $content.handlebars('remove'); // Remove all templates
+            window.console.log('Rendered templates: %o', $content.handlebars('get')); // Get the rendered templates for the content element
+            window.console.log('Compiled templates: %o', $content.handlebars('compiled')); // Get the compiled templates for the content element
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        var $content = $('#container');
+        $(function () {
+            var dados = "";
+            var data1 = [];
+
+            
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                contentType: 'application/json',
+                url: 'https://logspot.herokuapp.com/registoActividade',
+                success: function (data) {
+                    console.log("Já estou")
+                    context = {
+                        dados: data
+                    };
+                    console.log(context)
+
+                    $content.handlebars('add', '#templateDadosAtividades', context, {
+                        remove: false
+                    });
+                    console.log(data[0].data)
+                    // count(data[0].dia_realizacao)
+                    countdw()
+                }
+            })
+
+
+        });
+    </script>
+

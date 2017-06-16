@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>mockup teste</title>
+
+    <!--Icon da barra de separadores-->
+    <link rel="icon" href="https://logspot.herokuapp.com/static/css/LogSpot.ico" type="icon">
+</head>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<script src="https://logspot.herokuapp.com/static/scripts/index.js"></script>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="https://logspot.herokuapp.com/static/css/index.css" rel="stylesheet">
+
+
+<script src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.0.4/dist/jquery.countdown.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script src="https://ipppt-my.sharepoint.com/personal/9150293_esmad_ipp_pt/_layouts/15/guestaccess.aspx?docid=1ec6efa9a36e64335b8cb81f5224e5f8b&authkey=Ae0tFaBNriVG5m8r1vDea9Y"></script>
+<script src="https://logspot.herokuapp.com/static/scripts/script.js"></script>
+
+
+
+
+<body>
+    <!--**** black ****-->
+    <div class="row row-nab">
+        <!--navbar-->
+        <nav class="navbar navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+                    <a class="navbar-brand" href="#">LogSpot</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a id="registo">Registo</a></li>
+                        <li><a id="historico">Histórico</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Configurações
+                        <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a id="dadosPessoais">Dados Pessoais</a></li>
+                                <li><a id="alterPass">Alterar Password</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+
+
+    <div class="row row-lr">
+        <div class="col-md-3" id="laranja">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <!--atividades-->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">Atividades</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse">
+                        <div class="panel-body">
+                            <li class="list-group-item" id="act_list"><a href="#"><i class="material-icons">sort</i> Listar</a></li>
+                            <li class="list-group-item" id="act_add"><a href="#"><i class="material-icons">add</i> Adicionar</a></li>
+                            <li class="list-group-item" id="act_alt"><a href="#"><i class="material-icons">remove</i> Alterar</a></li>
+                        </div>
+                    </div>
+                    <!--fim atividades-->
+                    <!--Registos-->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse2">Utilizadores</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <li class="list-group-item" id="user_import"><a href="#"><i class="material-icons">sort</i> Importar Utilizadores</a></li>
+                            <li class="list-group-item" id="user_admin_add"><a href="#"><i class="material-icons">add</i> Adicionar Admin</a></li>
+                            <li class="list-group-item" id="user_admin_alter"><a href="#"><i class="material-icons">remove</i> Alterar Admin</a></li>
+                        </div>
+                    </div>
+                    <!--fim Registos-->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9" id="verde">
+            <div class="row" id="container">
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <!--FOOTER-->
+    <div>
+        <footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h2>Log<span>Spot</span></h2>
+
+				<p class="footer-company-name">LogSpot AJP &copy; 2017</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>R. Dom Sancho I 1 </span> Argivai, Portugal</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:LogspotAJP@gmail.com">LogspotAJP@gmail.com</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="https://www.facebook.com/LogSpot-317153805373812/"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+					<a href="#"><i class="fa fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+		</footer>
+    </div>
+
+</body>
+
+</html>

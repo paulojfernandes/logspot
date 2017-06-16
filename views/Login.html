@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>LogSpot</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Icon da barra de separadores-->
+
+</head>
+
+<body>
+    <link rel="icon" href="https://logspot.herokuapp.com/static/img/LogSpot.ico" type="icon">
+    <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="manifest" href="https://logspot.herokuapp.com/static/manifest.json">
+
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--Invoca a estilização em css-->
+    <link rel="stylesheet" href="https://logspot.herokuapp.com/static/css/Login.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="https://ipppt-my.sharepoint.com/personal/9150293_esmad_ipp_pt/_layouts/15/guestaccess.aspx?docid=1ec6efa9a36e64335b8cb81f5224e5f8b&authkey=Ae0tFaBNriVG5m8r1vDea9Y"></script>
+
+
+
+    <div id=login_c class="container">
+        <h1 id=tittle>LogSpot</h1>
+        <div id="erros2">
+            <script id="erros" type="text/x-handlebars-template" data-template-example="">
+                <div id="erro"> {{responseText}}</div>
+            </script>
+        </div>
+
+
+
+        <script id="templateLogin" type="text/x-handlebars-template" data-template-example="">
+            <div class="row" id="login">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <br>
+                    <form action="https://logspot.herokuapp.com/login" method="post">
+                        <br>E-mail:<br>
+                        <input class="w3-input" id="email" type="text" name="email">
+                        <br>Password:<br>
+                        <input class="w3-input" id="pass" type="text" name="passe">
+
+
+                        <br><br>
+                        <input id="enviar" type="submit" value="Iniciar Sessão">
+                    </form>
+                </div>
+            </div>
+        </script>
+
+
+    </div>
+    <div id=footer class="container">
+        <footer>
+            <a id="help_footer" href="">Ajuda</a>
+        </footer>
+    </div>
+</body>
+
+
+
+
+
+<script type="text/javascript">
+    var $content = $('#login_c');
+    var $erros = $('#erros2');
+    $content.handlebars('add', '#templateLogin', {
+        remove: false
+    });
+
+    $(function () {
+        $('#enviar').click(function (e) {
+            e.preventDefault();
+
+
+            var data = {};
+            data.email = $('#email').val();
+            $('#email').val("");
+            data.pass = $('#pass').val();
+            $('#pass').val("");
+
+            console.log(data);
+
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                url: 'https://logspot.herokuapp.com/login',
+                success: function (data) {
+                    //console.log('success:');
+                    console.log(data);
+
+                    $("body").empty();
+                    $("body").load('https://logspot.herokuapp.com/static/views/index2.html');
+                },
+                error: function (error) {
+                    console.log(error);
+                    $erros.handlebars('remove', '#erros');
+                    $erros.handlebars('add', '#erros', error, {
+                        remove: false
+                    });
+                }
+
+
+            });
+        });
+    });
+</script>
+
+
+
+</html>

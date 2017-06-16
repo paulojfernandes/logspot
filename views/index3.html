@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mockup teste</title>
+
+    <!--Icon da barra de separadores-->
+    <link rel="icon" href="https://logspot.herokuapp.com/static/css/LogSpot.ico" type="icon">
+    <link rel="manifest" href="https://logspot.herokuapp.com/static/manifest.json">
+</head>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<!-- Custom CSS -->
+<link href="https://logspot.herokuapp.com/static/css/sb-admin.css" rel="stylesheet">
+<link href="https://logspot.herokuapp.com/static/css/index.css" rel="stylesheet">
+
+
+
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.0.4/dist/jquery.countdown.min.js"></script>
+
+
+<script src="https://logspot.herokuapp.com/static/scripts/localizacao.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script src="https://ipppt-my.sharepoint.com/personal/9150293_esmad_ipp_pt/_layouts/15/guestaccess.aspx?docid=1ec6efa9a36e64335b8cb81f5224e5f8b&authkey=Ae0tFaBNriVG5m8r1vDea9Y"></script>
+<script src="https://logspot.herokuapp.com/static/scripts/script.js"></script>
+<script src="https://logspot.herokuapp.com/static/scripts/index.js"></script>
+
+
+
+
+
+
+<body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"><img class="img" src="https://logspot.herokuapp.com/static/logo-06.png" style="max-width: 200px;margin-top: -15px; display:inline-block;"></a>
+            </div>
+            <!-- Top Menu Items -->
+
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a id="alert" href="#" class="dropdown-toggle" data-toggle="dropdown"><i  class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown" id="container3">
+
+                        <script id="alertas" type="text/x-handlebars-template" data-template-example="">
+
+                            {{#each dados}}
+                            <li class="message-preview">
+                                <a href="#">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{titulo}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>{{msg_alerta}}</p>
+                                    </div>
+                                </a>
+                            </li>
+
+                            {{/each}}
+
+                            <li class="message-footer">
+                                <a href="#">Read All New Messages</a>
+                            </li>
+                        </script>
+
+
+
+
+                    </ul>
+                </li>
+
+                <li class="dropdown" id="user2">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Utilizador <b class="caret"></b></a>
+
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a id="dadosPessoais" href="#"><i class="fa fa-fw fa-list"></i> Perfil</a>
+                        </li>
+                        <li>
+                            <a id="alterPass" href="#"><i class="fa fa-fw fa-key"></i> Alterar Password</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="logOut"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+
+            <!--Paulo tive de deixar a navbar-top so para testas coisas, usa so as coisas daqui debaixo-->
+
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+
+                 
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-tasks"></i> Atividades <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a id="act_list" href="#"><i class="fa fa-fw fa-list"></i> Listar</a>
+                            </li>
+                            <li>
+                                <a id="act_add" href="#"><i class="fa fa-fw fa-plus"></i>Adicionar</a>
+                            </li>
+                            <li>
+                                <a id="act_Qr" href="#"><i class="fa fa-fw fa-qrcode"></i>Gerar QRCode</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="user_import" href="#"><i class="fa fa-fw fa-users"></i> Importar Utilizadores</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-lock"></i> Administradores <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo1" class="collapse">
+                            <li>
+                                <a id="user_admin_add" href="#"><i class="fa fa-fw fa-plus"></i> Adicionar</a>
+                            </li>
+                            <li>
+                                <a id="user_admin_add" href="#"><i class="fa fa-fw fa-minus"></i> Remover</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="container" id="verde">
+                <div class="row" id="container">
+
+                </div>
+
+                <!--<footer class="footer-distributed">
+
+                    <div class="footer-left">
+
+                        <h2>Log<span>Spot</span></h2>
+
+                        <p class="footer-company-name">LogSpot AJP &copy; 2017</p>
+                    </div>
+
+                    <div class="footer-center">
+
+                        <div>
+                            <i class="fa fa-map-marker"></i>
+                            <p><span>R. Dom Sancho I 1 </span> Argivai, Portugal</p>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-envelope"></i>
+                            <p><a href="mailto:LogspotAJP@gmail.com">LogspotAJP@gmail.com</a></p>
+                        </div>
+
+                    </div>
+
+                    <div class="footer-right">
+
+                        <p class="footer-company-about">
+                            <span>About the company</span> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
+                            euismod convallis velit, eu auctor lacus vehicula sit amet.
+                        </p>
+
+                        <div class="footer-icons">
+
+                            <a href="https://www.facebook.com/LogSpot-317153805373812/"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-github"></i></a>
+
+                        </div>
+
+                    </div>
+
+                </footer>-->
+
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    <script type="text/javascript">
+        var $content = $('#container3');
+
+
+        $(function () {
+            var dados = "";
+            var data1 = [];
+
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                contentType: 'application/json',
+                url: 'https://logspot.herokuapp.com/obterAlertasAnteriores',
+                success: function (data) {
+                    //console.log("Já estou")
+                    context = {
+
+                        dados: data
+                    };
+                    //console.log(context)
+                    $content.handlebars('remove', '#alertas', context, {
+                        remove: false
+                    });
+                    $content.handlebars('add', '#alertas', context, {
+                        remove: false
+                    });
+                }
+            })
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                contentType: 'application/json',
+                url: 'https://logspot.herokuapp.com/registoActividade',
+                success: function (data) {
+                    arrayDatas = data
+                    for (var i = 0; i < arrayDatas.length; i++) {
+                        arrayDatas[i].verificaçãoInicio = false
+                        arrayDatas[i].verificaçãoFim = false
+                    }
+                }
+            })
+
+
+        });
+    </script>
+</body>
+
+</html>
