@@ -66,10 +66,6 @@ $(document).ready(function () {
 
 
 
-    $(document).on("click", "#login2", function () {
-        $("body").empty();
-        $("body").load('https://logspot.herokuapp.com/static/views/Login.html');
-    });
 
 
     $(document).on("click", "#importarUtiizadores", function (e) {
