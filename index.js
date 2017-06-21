@@ -92,7 +92,6 @@ app.get('/', function (req, res) {
 
 
 
-
 app.post('/home', function (req, res) {
     console.log('body: ' + JSON.stringify(req.body));
     queryInserir(req, res)

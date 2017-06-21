@@ -72,7 +72,7 @@
 
                             {{#each dados}}
                             <li class="message-preview">
-                                <a href="#">
+                                <a id="message" href="#">
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading">
@@ -124,16 +124,20 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
 
-                    <li class="active"><a href="#"><i class="fa fa-fw fa-home" aria-hidden="true"></i>Home</a></li>
+
                     <li>
                         <a href="#" id="registo"> <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Registo</a>
                     </li>
                     <li>
                         <a href="#" id="historico"> <i class="fa fa-fw fa-bookmark" aria-hidden="true"></i>Histórico</a>
                     </li>
-                
 
-                  
+                    <li>
+                        <a href="#" id="help"> <i class="fa fa-fw fa-question-circle" aria-hidden="true"></i>Ajuda</a>
+                    </li>
+
+
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -222,6 +226,8 @@
                     $content.handlebars('add', '#alertas', context, {
                         remove: false
                     });
+                    $("#container").empty();
+                    $("#container").load('https://logspot.herokuapp.com/static/views/registos.html');
                 }
             })
         });

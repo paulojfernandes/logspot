@@ -29,7 +29,7 @@
 </div>
 
 <script id="templateDadosAtividades2" type="text/x-handlebars-template" data-template-example="">
-    <div  id="atividade" style="text-align: center">
+    <div id="atividade" style="text-align: center">
         <h1>Titulo: {{titulo}} </h1>
     </div>
 </script>
@@ -51,6 +51,9 @@
             <div class="col-md-6">
                 <form>
                     <h3>Obter QRCode</h3>
+                    <label for="qrcode" class="custom-file-upload">
+                     <i class="fa fa-cloud-upload fa-5x"></i> 
+                     </label>
                     <!-- prompt the user, Camera or Gallery -->
                     <input id="qrcode" class="btn btn-primary" type="file" accept="image/*" />
                     <br>
@@ -87,4 +90,3 @@
 
 
 <script src="https://logspot.herokuapp.com/static/scripts/qrcode.js"></script>
-

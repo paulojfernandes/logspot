@@ -37,6 +37,13 @@ $(document).ready(function () {
     });
 
 
+
+    $(document).on("click", "#help", function () {
+        $("#container").empty();
+
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/ajuda.html');
+    });
+
     $(document).on("click", "#act_alt", function () {
         $("#container").empty();
         $("#container").load('https://logspot.herokuapp.com/static/views/novo/alterarAtividade.html');
@@ -80,9 +87,48 @@ $(document).ready(function () {
 
     });
 
+    $(document).on("click", "#addAdmin", function (e) {
+        e.preventDefault();
+
+        var data = {};
+
+        data.nomeAdmin = $('#nomeAdmin').val();
+        data.apelidoAdmin = $('#apelidoAdmin').val();
+        data.emailAdmin = $('#emailAdmin').val();
+
+
+        ajaxEnviar("addAdmin", data)
+
+
+
+    });
+
+
+    $(document).on("click", "#dashboard", function () {
+        $("#container").empty();
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/dashboard.html');
+    });
+
+    $(document).on("click", "#voltarPagina", function () {
+        $("#container").empty();
+        $("#container").load('https://logspot.herokuapp.com/static/views/registos.html');
+    });
+
+
+
     $(document).on("click", "#act_Qr", function () {
         $("#container").empty();
         $("#container").load('https://logspot.herokuapp.com/static/views/novo/gerarQRCode.html');
+    });
+
+    $(document).on("click", "#error", function () {
+        $("#container").empty();
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/error.html');
+    });
+
+    $(document).on("click", "#check", function () {
+        $("#container").empty();
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/check.html');
     });
 
 
@@ -123,7 +169,7 @@ $(document).ready(function () {
 
 
 
-    
+
 
 
 });

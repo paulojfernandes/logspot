@@ -225,6 +225,7 @@ $(document).on("click", "#inserirAtividade", function (e) {
 
 $(document).on("click", "#obterAtividade-alterar", function (e) {
     e.preventDefault();
+    var $content = $('#container');
 
     var row = $(this).closest("tr");
     var idAtividade = row.find("td:eq(0)").text(); // get current row 1st TD value
@@ -281,7 +282,10 @@ $(document).on("click", "#removerAtividade", function (e) {
 
 $(document).on("click", "#atualizarAtividade", function (e) {
     e.preventDefault();
+    $("#myModal").removeClass("in");
+    $(".modal-backdrop").remove();
 
+    $('#myModal').modal('hide');
 
     var idAtividade = $(".modal-body").attr('id'); // get current row 1st TD value
     console.log(idAtividade)
@@ -391,7 +395,16 @@ function ajaxEnviar(url, data, template, msg) {
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
+     
+            $("#container").empty();
+            $("#container").load('https://logspot.herokuapp.com/static/views/novo/check.html');
 
+        },
+        error: function (error) {
+            console.log(error)
+          
+            $("#container").empty();
+            $("#container").load('https://logspot.herokuapp.com/static/views/novo/error.html');
 
         }
     });

@@ -1,7 +1,9 @@
 var mysql = require('mysql');
 var data = [];
 
-
+var select = "SELECT",
+    from = "FROM",
+    where = "WHERE"
 
 var connection = mysql.createConnection({
     host: 'webitcloud.net',
@@ -27,6 +29,42 @@ function randomString(len, an) {
 
 
 
+'use strict';
+const nodemailer = require('nodemailer');
+
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+    host: 'cp26.webserver.pt',
+    port: 465,
+    secure: true, // secure:true for port 465, secure:false for port 587
+    auth: {
+        user: 'ajp@webitcloud.net',
+        pass: 'PW21617234'
+    }
+});
+
+
+// // setup email data with unicode symbols
+// let mailOptions = {
+//     from: '"Fred Foo 👻" <ajp@webitcloud.net>', // sender address
+//     to: 'paulojdfernandes@sapo.pt', // list of receivers
+//     subject: 'Hello ✔', // Subject line
+//     text: 'Hello world ?', // plain text body
+//     html: '<b>Hello world ?</b>' // html body
+// };
+
+function sendEmail(email, password) {
+    var mailOptions = {
+        from: '"LOGSPOT" <ajp@webitcloud.net>',
+        to: email, // Email is variable that stores the email address
+        subject: 'Dados Acesso',
+        text: 'Bem Vindo <br> Os seus dados de acesso à aplicação são:<br> <br> Email :' + email + ' <br> Password:' + password + ' <br> <br><br> LOGSPOT',
+        html: 'Bem Vindo <br> Os seus dados de acesso à aplicação são:<br> <br> Email :' + email + ' <br> Password:' + password + ' <br> <br><br> LOGSPOT'
+    };
+    return transporter.sendMail(mailOptions).then(function () {
+        console.log('New star email notification sent to: ' + email);
+    });
+}
 
 
 console.log("models")
@@ -53,8 +91,10 @@ exports.dadosAtividadesRegisto = function (req, res) {
 
 exports.dadosLogin = function (req, res) {
     console.log("entrei login models")
+    var query = select + req.body.select + from + req.body.from + where + req.body.where
+    console.log(query)
 
-    connection.query('SELECT * FROM ls_utilizador,ls_contacto WHERE ls_contacto.email="' + req.body.email + '" AND ls_utilizador.pass="' + req.body.pass + '" and ls_utilizador.id_contacto=ls_contacto.id_contacto;',
+    connection.query(query,
         function (err, rows, fields) {
             if (!err) {
 
@@ -116,7 +156,7 @@ exports.registarUserAtividade = function (req, res) {
     });
 
 
-    connection.query(' INSERT INTO ls_registo(id_atividade,id_tipo_registo,id_utilizador,id_agenda) VALUES(' + req.body.idAtividade + ',' + req.body.tipoRegisto + '1,(select id_utilizador from ls_utilizador,ls_contacto where ls_utilizador.id_contacto=ls_contacto.id_contacto and email="' + req.session.username + '"),(SELECT MAX(id_agenda)  FROM ls_agenda));', function (err, rows, fields) {
+    connection.query(' INSERT INTO ls_registo(id_atividade,id_tipo_registo,id_utilizador,id_agenda) VALUES(' + req.body.idAtividade + ',' + req.body.tipoRegisto + ',(select id_utilizador from ls_utilizador,ls_contacto where ls_utilizador.id_contacto=ls_contacto.id_contacto and email="' + req.session.username + '"),(SELECT MAX(id_agenda)  FROM ls_agenda));', function (err, rows, fields) {
         if (!err) {
             res.send("Registo Efetuado")
         } else {
@@ -169,7 +209,7 @@ exports.importUser = function (req, res) {
 
                         connection.query("insert into ls_utilizador(nome,apelido,pass,data_nasc,id_empresa,id_contacto,id_tipo_utilizador,id_localizacao) values('" + element[0] + "','" + element[1] + "','" + pass + "','1970-01-01',1," + rows.insertId + ",1,1); ", function (err, rows, fields) {
                             if (!err) {
-
+                                sendEmail(element[2], pass)
                                 console.log("user2", rows.insertId, element[0], element[1])
 
                             } else {
@@ -198,6 +238,58 @@ exports.importUser = function (req, res) {
 
 
 }
+
+
+
+
+exports.addAdmin = function (req, res) {
+
+
+
+    connection.query("INSERT INTO ls_contacto (email) SELECT * FROM (SELECT '" + req.body.emailAdmin + "') AS tempEmail WHERE NOT EXISTS (SELECT email FROM ls_contacto WHERE email = '" + req.body.emailAdmin + "') LIMIT 1;", function (err, rows, fields) {
+        if (!err) {
+            if (rows.insertId != 0) {
+
+
+
+                var pass = randomString(15)
+                console.log(pass)
+
+
+                connection.query("insert into ls_utilizador(nome,apelido,pass,data_nasc,id_empresa,id_contacto,id_tipo_utilizador,id_localizacao) values('" + req.body.nomeAdmin + "','" + req.body.apelidoAdmin + "','" + pass + "','1970-01-01',1," + rows.insertId + ",2,1); ", function (err, rows, fields) {
+                    if (!err) {
+
+
+                        // // send mail with defined transport object
+                        // transporter.sendMail(mailOptions, (error, info) => {
+                        //     if (error) {
+                        //         return console.log(error);
+                        //     }
+                        //     console.log('Message %s sent: %s', info.messageId, info.response);
+                        // });
+                        sendEmail(req.body.emailAdmin, pass)
+
+                        //console.log("user2", rows.insertId, element[0], element[1])
+                        res.send("sucess")
+
+                    } else {
+                        console.log('Error while performing Query.', err);
+                    }
+
+                });
+
+            }
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    });
+
+}
+
+
+
+
 
 exports.obterUser = function (req, res) {
 
@@ -297,11 +389,28 @@ exports.inserirAtividade = function (req, res) {
 
 exports.alterarAtividade = function (req, res) {
 
-    connection.query(" UPDATE l_atividade,ls_localizacao,ls_agenda SET titulo ='" + req.body.nomeAtividade + "',lat ='" + req.body.coordLat + "',lng ='" + req.body.coordLng + "',cidade = '" + req.body.cidade + "', cod_postal = '" + req.body.codPostal + "',  qr_code = '" + req.body.qrCode + "',  dia_realizacao ='" + req.body.dataAtividade + "' WHERE l_atividade.id_atividade ='" + req.body.idAtividade + "'  AND l_atividade.id_agenda = ls_agenda.id_agenda AND l_atividade.id_localizacao = ls_localizacao.id_localizacao;", function (err, rows, fields) {
+    connection.query(" UPDATE l_atividade,ls_localizacao,ls_agenda SET titulo ='" + req.body.nomeAtividade + "',lat ='" + req.body.coordLat + "',lng ='" + req.body.coordLng + "',cidade = '" + req.body.cidade + "', cod_postal = '" + req.body.codPostal + "',  qr_code = '" + req.body.qrCode + "',  dia_realizacao = +DATE_ADD('" + req.body.dataAtividade + "',INTERVAL 1 HOUR) WHERE l_atividade.id_atividade ='" + req.body.idAtividade + "'  AND l_atividade.id_agenda = ls_agenda.id_agenda AND l_atividade.id_localizacao = ls_localizacao.id_localizacao;", function (err, rows, fields) {
         if (!err) {
             res.send("Atividade Alterada")
         } else {
             console.log('Error while performing Query.', err);
+            res.status(500).send("Erro BD");
+        }
+
+    });
+
+
+
+}
+
+exports.dadosAPI = function (req, res) {
+    console.log(req.params.empresa)
+    connection.query("select titulo, dia_realizacao, lat, lng from ls_agenda,l_atividade,ls_localizacao,ls_empresa where  l_atividade.id_agenda = ls_agenda.id_agenda AND l_atividade.id_localizacao= ls_localizacao.id_localizacao and ls_empresa.id_empresa= l_atividade.id_empresa and ls_empresa.nome='" + req.params.empresa + "'", function (err, rows, fields) {
+        if (!err) {
+            res.send(rows)
+        } else {
+            console.log('Error while performing Query.', err);
+            res.status(500).send("Erro BD");
         }
 
     });
@@ -357,6 +466,102 @@ exports.obterAlertasAnteriores = function (req, res) {
 
     });
 
+
+
+}
+
+
+exports.dashboard = function (req, res) {
+    var dados = {}
+
+
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_empresa.nome ="Empresa Teste" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 15 minute);', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.min15 = rows
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_empresa.nome ="Empresa Teste" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 30 minute);', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.min30 = rows
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+
+
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_empresa.nome ="Empresa Teste" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 45 minute);', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.min45 = rows
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+
+
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_empresa.nome ="Empresa Teste" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 12 HOUR);', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.min60 = rows
+
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+
+    connection.query('select count(l_atividade.id_atividade) as total, ls_tipo_atividade.tipo_atividade from ls_tipo_atividade,l_atividade where l_atividade.id_tipo_atividade= ls_tipo_atividade.id_tipo_atividade group by tipo_atividade;', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.tipoAtividade = rows
+
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+
+    connection.query('select count(ls_utilizador.id_utilizador) as total from ls_empresa,ls_utilizador where ls_empresa.id_empresa =1 and ls_empresa.id_empresa = ls_utilizador.id_empresa ;', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.totalUser = rows
+
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+
+
+    connection.query('select count(l_atividade.id_atividade) as total from l_atividade, ls_empresa, ls_agenda where ls_empresa.id_empresa = l_atividade.id_empresa and l_atividade.id_agenda= ls_agenda.id_agenda and  ls_empresa.id_empresa =1;', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.totalAtividades = rows
+
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+
+    connection.query('select count(l_atividade.id_atividade) as total from l_atividade, ls_empresa, ls_agenda where ls_empresa.id_empresa = l_atividade.id_empresa and l_atividade.id_agenda= ls_agenda.id_agenda and  ls_empresa.id_empresa =1;', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.totalRegistos = rows
+            res.send(dados)
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
 
 
 }

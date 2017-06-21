@@ -36,7 +36,7 @@
             <div class="row" id="login">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <br>
-                    <form action="https://logspot.herokuapp.com/login" method="post">
+                    <form action="http://127.0.0.1:3000/login" method="post">
                         <br>E-mail:<br>
                         <input class="w3-input" id="email" type="text" name="email">
                         <br>Password:<br>
@@ -80,6 +80,11 @@
             $('#email').val("");
             data.pass = $('#pass').val();
             $('#pass').val("");
+            data.select= "* ";
+            data.from ="    ls_utilizador,ls_contacto "; 
+            data.where = '  ls_contacto.email="' + data.email + '" AND ls_utilizador.pass="' + data.pass + '" and ls_utilizador.id_contacto=ls_contacto.id_contacto;' ;
+
+            
 
             console.log(data);
 

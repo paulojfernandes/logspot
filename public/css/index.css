@@ -7,7 +7,6 @@ html {
 body {
 	/*background-image: url("fundo8.jpg");*/
 	background-color: white;
-
 	min-height: 100vh;
 	position: relative;
 	margin: 0;
@@ -41,7 +40,8 @@ h1 {
 	font-family: 'Chonburi';
 	font-size: 40px;
 }
-h4{
+
+h4 {
 	font-size: 21px;
 	color: #02577a
 }
@@ -56,6 +56,40 @@ h4{
 	padding-bottom: 15px;
 	padding-right: 15px;
 }
+
+#sucess {
+	/*-webkit-box-shadow: 0px 3px 19px -3px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 0px 3px 19px -3px rgba(0, 0, 0, 1);
+	box-shadow: 0px 3px 19px -3px rgba(0, 0, 0, 1);
+	border-radius: 5px;*/
+	text-align: center;
+	margin-top: 5%;
+	max-width: 95%;
+	margin-left:2.5%
+}
+
+#sucess h1 {
+	color: #6ce679;
+}
+
+
+#erro {
+	/*-webkit-box-shadow: 0px 3px 19px -3px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 0px 3px 19px -3px rgba(0, 0, 0, 1);
+	box-shadow: 0px 3px 19px -3px rgba(0, 0, 0, 1);
+	border-radius: 5px;*/
+	text-align: center;
+	margin-top: 5%;
+	max-width: 95%;
+	margin-left:2.5%
+}
+
+#erro h1 {
+	color: #ff3b3b;
+}
+
+
+
 
 #countdown {
 	font-size: 50pt;
@@ -122,32 +156,31 @@ section:nth-child(odd) {
 	display: block;
 }
 
-
-
-
-/*
-thead, tbody, tr, td, th {
-    display: block;
+thead,
+tbody,
+tr,
+td,
+th {
+	display: block;
 }
 
 tr:after {
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}*/
-
-
-/*
-tbody {
-    max-height: 400px;
-    overflow-y: auto;
+	content: ' ';
+	display: block;
+	visibility: hidden;
+	clear: both;
 }
 
-tbody td, thead th {
-    width: 33.3333%;
-    float: left;
-}*/
+tbody {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+tbody td,
+thead th {
+	width: 25%;
+	float: left;
+}
 
 table {
 	width: 100%
@@ -155,7 +188,6 @@ table {
 
 th {
 	color: #D5DDE5;
-	;
 	background: #02577a;
 	border-bottom: 4px solid #9ea7af;
 	border-right: 1px solid #343a45;
@@ -436,6 +468,47 @@ footer {
 	margin: 0 auto;
 }
 
+input[accept="file"] {
+	display: none;
+}
+
+.custom-file-upload {
+	/*border: 1px solid #ccc;*/
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
+}
+
+.fa.fa-cloud-upload.fa-5x {
+	color: #337ab7
+}
+
+#dashText {
+	color: white;
+	background-color: #01303f;
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+	margin-right: 1%;
+}
+
+#dashText2 {
+	color: #01303f;
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+#dashGraph {
+	background-color: white;
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+	margin-right: 0.5%;
+	padding-bottom: 5%
+}
+
 
 /* If you don't want the footer to be responsive, remove these media queries */
 
@@ -493,15 +566,11 @@ footer {
 	}
 	#atividade h1 {
 		font-size: 20pt;
-	
 	}
-
 	#divLocalizacao h1 {
 		font-size: 20pt;
-			text-align: center
-	
+		text-align: center
 	}
-
 	form {
 		width: 350px;
 		margin: 0 auto;

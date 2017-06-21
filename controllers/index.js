@@ -136,6 +136,14 @@ router.post("/importUser", function (req, res) {
 
 });
 
+
+
+router.post("/addAdmin", function (req, res) {
+
+    dadosAtividade = Dados.addAdmin(req, res)
+
+});
+
 router.post("/obterUser", function (req, res) {
     res.send({
         "user": req.session.username
@@ -144,13 +152,26 @@ router.post("/obterUser", function (req, res) {
 
 });
 
+
+router.post("/dashboard", function (req, res) {
+
+    dadosAtividade = Dados.dashboard(req, res)
+
+});
+
 // router.post("/logOut", function (req, res) {
 //     req.session = null
 //     res.redirect(req.get('referer'));
- 
+
 
 
 // });
+router.get('/atividade/:empresa', function (req, res) {
+    var empresa = req.params.empresa;
+    //res.send(empresa)
+    dadosAtividade = Dados.dadosAPI(req, res)
+
+});
 
 
 

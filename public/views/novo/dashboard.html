@@ -1,0 +1,116 @@
+<script src="https://logspot.herokuapp.com/static/scripts/dashboard.js">
+</script>
+
+<style>
+        #page-wrapper {
+                background-color: lightgray
+        }
+</style>
+
+<div class="row">
+
+
+        <div id="dashText" class="col-xs-3">
+                <h3> Nº Total Utilizadores </h3>
+                <h3 id="totalUsers"> </h3>
+
+
+        </div>
+
+        <div id="dashText" class="col-xs-3">
+                <h3> Nº Total Atividades </h3>
+                <h3 id="totalAtividades"> </h3>
+
+        </div>
+
+        <div id="dashText" class="col-xs-3">
+
+                <h3> Nº Total Registos </h3>
+                <h3 id="totalRegistos"> </h3>
+        </div>
+
+
+
+
+</div>
+<hr>
+<div id="dashGraph" class="row">
+        <div id="dashText2" class="col-md-3">
+                <h3> Atividades </h3>
+                <canvas id="myChart" style="max-width:50%"></canvas>
+        </div>
+        <div id="dashText2" class="col-md-3">
+                <h3> Atividades </h3>
+                <canvas id="myChart3" style="max-width:50%;"></canvas>
+        </div>
+        <div id="dashText2" class="col-md-3">
+                <h3> Atividades </h3>
+                <canvas id="myChart4" style="max-width:50%"></canvas>
+        </div>
+
+
+
+        <br><br>
+
+
+
+        <div id="dashText2" class="col-md-5">
+                <h3> Nº de Atividades </h3>
+                <canvas id="myChart2" style="max-width:70%"></canvas>
+
+
+
+        </div>
+
+
+        <div id="dashText2" class="col-md-5">
+                <h3> Nº Total de Registo nos últimos(min) </h3>
+                <canvas id="myChart5" style="max-width:70%"></canvas>
+
+
+
+        </div>
+
+
+</div>
+
+
+
+<script type="text/javascript">
+        $(function () {
+                $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        contentType: 'application/json',
+                        url: 'https://logspot.herokuapp.com/dashboard',
+                        success: function (data) {
+                                console.log(data)
+
+                                chartLines(ctx5, ["15", "30", "45", "60"], [
+                                        data.min15[0].total,
+                                        data.min30[0].total,
+                                        data.min45[0].total,
+                                        data.min60[0].total
+                                ])
+
+                                chartLines(ctx2, [
+                                        data.tipoAtividade[0].tipo_atividade,
+                                        data.tipoAtividade[1].tipo_atividade,
+                                        "ola"
+                                ], [
+                                        data.tipoAtividade[0].total,
+                                        data.tipoAtividade[1].total,
+                                        5
+                                ])
+                                $("#totalUsers").append(data.totalUser[0].total)
+                                $("#totalAtividades").append(data.totalAtividades[
+                                        0].total)
+                                $("#totalRegistos").append(data.totalRegistos[
+                                        0].total)
+
+                        }
+                })
+
+
+        });
+</script>
