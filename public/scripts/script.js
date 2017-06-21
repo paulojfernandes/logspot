@@ -225,7 +225,11 @@ $(document).on("click", "#inserirAtividade", function (e) {
 
 $(document).on("click", "#obterAtividade-alterar", function (e) {
     e.preventDefault();
-    var $content = $('#container');
+
+
+
+
+   var $content = $('#container');
 
     var row = $(this).closest("tr");
     var idAtividade = row.find("td:eq(0)").text(); // get current row 1st TD value
