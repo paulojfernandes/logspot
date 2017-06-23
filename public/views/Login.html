@@ -23,7 +23,7 @@
 <body>
     <div id=login_c class="container">
      <img class="img"       
-           src="https://logspot.herokuapp.com/static/css/logo2.png"  style="max-width: 350px;margin-left: -15%;  display:inline-block;">
+           src="https://logspot.herokuapp.com/static/css/logo2.png" >
         <div id="erros2">
             <script id="erros" type="text/x-handlebars-template" data-template-example="">
                 <div id="erro"> {{responseText}}</div>
@@ -36,11 +36,11 @@
             <div class="row" id="login">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <br>
-                    <form action="http://127.0.0.1:3000/login" method="post">
+                    <form action="https://logspot.herokuapp.com/login" method="post">
                         <br>E-mail:<br>
                         <input class="w3-input" id="email" type="text" name="email">
                         <br>Password:<br>
-                        <input class="w3-input" id="pass" type="text" name="passe">
+                        <input class="w3-input" id="pass" type="password" name="passe">
 
 
                         <br><br>
@@ -52,11 +52,11 @@
 
 
     </div>
-    <div id=footer class="container">
+    <!--<div id=footer class="container">
         <footer>
             <a id="help_footer" href="">Ajuda</a>
         </footer>
-    </div>
+    </div>-->
 </body>
 
 
@@ -97,8 +97,9 @@
                     //console.log('success:');
                     console.log(data);
 
-                    $("body").empty();
-                    $("body").load('https://logspot.herokuapp.com/static/views/index.html');
+                    // $("body").empty();
+                    // $("body").load('https://logspot.herokuapp.com/static/views/index3.html');
+                   location.href ="https://logspot.herokuapp.com/logspot"
                 },
                 error: function (error) {
                     console.log(error);

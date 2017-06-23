@@ -10,7 +10,7 @@
 <div class="row">
 
 
-        <div id="dashText" class="col-xs-3">
+        <div id="dashText" class="col-xs-3 ">
                 <h3> Nº Total Utilizadores </h3>
                 <h3 id="totalUsers"> </h3>
 
@@ -35,41 +35,45 @@
 </div>
 <hr>
 <div id="dashGraph" class="row">
-        <div id="dashText2" class="col-md-3">
-                <h3> Atividades </h3>
-                <canvas id="myChart" style="max-width:50%"></canvas>
+        <div class="row">
+                <div id="dashText2" class="col-md-3">
+                        <h3> Atividades </h3>
+                        <canvas id="myChart" style="max-width:50%"></canvas>
+                </div>
+                <div id="dashText2" class="col-md-3">
+                        <h3> Atividades </h3>
+                        <canvas id="myChart3" style="max-width:50%;"></canvas>
+                </div>
+
         </div>
-        <div id="dashText2" class="col-md-3">
-                <h3> Atividades </h3>
-                <canvas id="myChart3" style="max-width:50%;"></canvas>
-        </div>
-        <div id="dashText2" class="col-md-3">
-                <h3> Atividades </h3>
-                <canvas id="myChart4" style="max-width:50%"></canvas>
-        </div>
+
+
 
 
 
         <br><br>
 
+        <div class="row">
+                <div id="dashText2" class="col-md-5">
+                        <h3> Nº de Atividades </h3>
+                        <canvas id="myChart2" style="max-width:70%"></canvas>
 
 
-        <div id="dashText2" class="col-md-5">
-                <h3> Nº de Atividades </h3>
-                <canvas id="myChart2" style="max-width:70%"></canvas>
+
+                </div>
 
 
+                <div id="dashText2" class="col-md-5">
+                        <h3> Nº Total de Registo nos últimos(min) </h3>
+                        <canvas id="myChart5" style="max-width:70%"></canvas>
+
+
+
+                </div>
 
         </div>
 
 
-        <div id="dashText2" class="col-md-5">
-                <h3> Nº Total de Registo nos últimos(min) </h3>
-                <canvas id="myChart5" style="max-width:70%"></canvas>
-
-
-
-        </div>
 
 
 </div>
@@ -107,6 +111,10 @@
                                         0].total)
                                 $("#totalRegistos").append(data.totalRegistos[
                                         0].total)
+
+
+                                chartCircle(ctx, "", [40, 50, 46, 88])
+                                chartCircle(ctx3, "", [4, 4, 6, 8])
 
                         }
                 })

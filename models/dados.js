@@ -470,9 +470,9 @@ exports.obterAlertasAnteriores = function (req, res) {
 
 }
 
-
+var dados = {}
 exports.dashboard = function (req, res) {
-    var dados = {}
+    // var dados = {}
 
 
     connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_empresa.nome ="Empresa Teste" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 15 minute);', function (err, rows, fields) {
@@ -556,12 +556,42 @@ exports.dashboard = function (req, res) {
         if (!err) {
             console.log("entrei");
             dados.totalRegistos = rows
-            res.send(dados)
+            //res.send(dados)
         } else {
             console.log('Error while performing Query.', err);
         }
 
     })
 
+    queryDashboard(' select count(id_atividade) as total3D from l_atividade, ls_agenda where l_atividade.id_agenda = ls_agenda.id_agenda  and date(ls_agenda.dia_realizacao) = DATE_SUB(curdate(), INTERVAL 3 DAY);', req, res, false)
+    queryDashboard(' select count(id_atividade) as total3D from l_atividade, ls_agenda where l_atividade.id_agenda = ls_agenda.id_agenda  and date(ls_agenda.dia_realizacao) = DATE_SUB(curdate(), INTERVAL 2 DAY);', req, res, false)
+    queryDashboard(' select count(id_atividade) as total3D from l_atividade, ls_agenda where l_atividade.id_agenda = ls_agenda.id_agenda  and date(ls_agenda.dia_realizacao) = DATE_SUB(curdate(), INTERVAL 1 DAY);', req, res, true)
+
+
+
+
+
+}
+
+function queryDashboard(query, req, res, fim) {
+    console.log(fim)
+
+    connection.query(query, function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+      
+            dados.tipoDados = rows
+            if (fim == true) {
+                res.send(dados)
+            }
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+
+}
+
+function queryStandard(query, req, res) {
 
 }

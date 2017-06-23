@@ -8,7 +8,7 @@
 var ctx = document.getElementById("myChart").getContext('2d');
 var ctx2 = document.getElementById("myChart2").getContext('2d');
 var ctx3 = document.getElementById("myChart3").getContext('2d');
-var ctx4 = document.getElementById("myChart4").getContext('2d');
+// var ctx4 = document.getElementById("myChart4").getContext('2d');
 var ctx5 = document.getElementById("myChart5").getContext('2d');
 
 
@@ -78,9 +78,7 @@ function chartLines(canvas, labels, data) {
 }
 
 
-chartCircle(ctx, "", [40, 50, 46, 88])
-chartCircle(ctx3, "", [4, 4, 6, 8])
-chartCircle(ctx4, "", [20, 4, 46, 84])
+// chartCircle(ctx4, "", [20, 4, 46, 84])
 
 //chartLines(ctx5, "", [40, 4, 46, 8])
 //chartLines(ctx2, "", [40, 4, 46, 8])

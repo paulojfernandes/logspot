@@ -356,7 +356,8 @@ $(document).on("click", "#logOut", function (e) {
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 
-    location.reload()
+    location.href = "https://logspot.herokuapp.com/"
+
 
 });
 
@@ -395,14 +396,14 @@ function ajaxEnviar(url, data, template, msg) {
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
-     
+
             $("#container").empty();
             $("#container").load('https://logspot.herokuapp.com/static/views/novo/check.html');
 
         },
         error: function (error) {
             console.log(error)
-          
+
             $("#container").empty();
             $("#container").load('https://logspot.herokuapp.com/static/views/novo/error.html');
 

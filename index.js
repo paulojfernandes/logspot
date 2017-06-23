@@ -75,13 +75,27 @@ app.get('/', function (req, res) {
     //res.sendFile(path.join(__dirname + '/views2/Login.html'));
 
     if (req.session.username != null & req.session.password != null) {
+        res.redirect("http://localhost:3000/logspot")
+    } else {
+        res.sendFile(path.join(__dirname + '/views/index.html'));
+
+    }
+    //__dirname : It will resolve to your project folder.
+});
+
+
+
+app.get('/logspot', function (req, res) {
+    //res.sendFile(path.join(__dirname + '/views2/Login.html'));
+
+    if (req.session.username != null & req.session.password != null) {
         console.log("Alguem logado")
         if (req.session.typeUser == 1)
             res.sendFile(path.join(__dirname + '/views/index2.html'));
         else if (req.session.typeUser == 2)
             res.sendFile(path.join(__dirname + '/views/index3.html'));
     } else {
-        res.sendFile(path.join(__dirname + '/views/index.html'));
+        res.redirect("http://localhost:3000")
 
     }
     //__dirname : It will resolve to your project folder.
