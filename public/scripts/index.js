@@ -3,14 +3,14 @@ $(document).ready(function () {
 
     $(document).on("click", "#user_import", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/importarUtilizadores.html')
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/importarUtilizadores.html')
     });
 
 
 
     $(document).on("click", "#user_admin_add", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/adicionarAdmin.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/adicionarAdmin.html');
     });
 
 
@@ -18,14 +18,14 @@ $(document).ready(function () {
 
     $(document).on("click", "#user_admin_alter", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/alterarAdmin.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/alterarAdmin.html');
     });
 
 
 
     $(document).on("click", "#act_list", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/listarAtividades.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/listarAtividades.html');
     });
 
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
     $(document).on("click", "#act_add", function () {
         $("#container").empty();
 
-        $("#container").load('http://localhost:3000/static/views/novo/adicionarAtividade.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/adicionarAtividade.html');
     });
 
 
@@ -41,41 +41,41 @@ $(document).ready(function () {
     $(document).on("click", "#help", function () {
         $("#container").empty();
 
-        $("#container").load('http://localhost:3000/static/views/novo/ajuda.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/ajuda.html');
     });
 
     $(document).on("click", "#act_alt", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/alterarAtividade.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/alterarAtividade.html');
     });
 
 
     $(document).on("click", "#registo", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/registos.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/registos.html');
     });
 
     $(document).on("click", "#historico", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/listas.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/listas.html');
     });
 
 
     $(document).on("click", "#dadosPessoais", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/configDadosPessoais.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/configDadosPessoais.html');
     });
 
     $(document).on("click", "#alterPass", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/configPass.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/configPass.html');
     });
 
 
 
     $(document).on("click", "#login2", function () {
         $("body").empty();
-        $("body").load('http://localhost:3000/static/views/Login.html');
+        $("body").load('https://logspot.herokuapp.com/static/views/Login.html');
     });
 
 
@@ -111,29 +111,29 @@ $(document).ready(function () {
 
     $(document).on("click", "#dashboard", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/dashboard.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/dashboard.html');
     });
 
     $(document).on("click", "#voltarPagina", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/registos.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/registos.html');
     });
 
 
 
     $(document).on("click", "#act_Qr", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/gerarQRCode.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/gerarQRCode.html');
     });
 
     $(document).on("click", "#error", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/error.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/error.html');
     });
 
     $(document).on("click", "#check", function () {
         $("#container").empty();
-        $("#container").load('http://localhost:3000/static/views/novo/check.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/check.html');
     });
 
 

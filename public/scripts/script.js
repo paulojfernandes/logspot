@@ -28,7 +28,7 @@ $(document).on("click", "#registar", function () {
     // console.log($(this).parent().attr('id'))
     var data = {}
     data.id = $(this).parent().attr('id')
-    //window.location.href = "http://localhost:3000/registos/registoActividade/:id";
+    //window.location.href = "https://logspot.herokuapp.com/registos/registoActividade/:id";
 
 
     // verificar posição 
@@ -95,7 +95,7 @@ setInterval(function () {
         //     type: 'POST',
         //     dataType: "json",
         //     contentType: 'application/json',
-        //     url: 'http://localhost:3000/obterAlertasAnteriores',
+        //     url: 'https://logspot.herokuapp.com/obterAlertasAnteriores',
         //     success: function (data) {
         //         console.log("Já estou")
         //         context = {
@@ -251,7 +251,7 @@ $(document).on("click", "#obterAtividade-alterar", function (e) {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'http://localhost:3000/obterAtividadesAlter',
+        url: 'https://logspot.herokuapp.com/obterAtividadesAlter',
         success: function (data) {
             console.log("Já estou")
             context = {
@@ -379,7 +379,7 @@ $(document).on("click", "#logOut", function (e) {
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 
-    location.href = "http://localhost:3000/"
+    location.href = "https://logspot.herokuapp.com/"
 
 
 });
@@ -392,7 +392,7 @@ function ajaxObter(url, template, msg) {
         type: 'POST',
         dataType: "json",
         contentType: 'application/json',
-        url: 'http://localhost:3000/' + url,
+        url: 'https://logspot.herokuapp.com/' + url,
         success: function (data) {
             console.log("Já estou")
             context = {
@@ -415,20 +415,20 @@ function ajaxEnviar(url, data, template, msg) {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'http://localhost:3000/' + url,
+        url: 'https://logspot.herokuapp.com/' + url,
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
 
             $("#container").empty();
-            $("#container").load('http://localhost:3000/static/views/novo/check.html');
+            $("#container").load('https://logspot.herokuapp.com/static/views/novo/check.html');
 
         },
         error: function (error) {
             console.log(error)
 
             $("#container").empty();
-            $("#container").load('http://localhost:3000/static/views/novo/error.html');
+            $("#container").load('https://logspot.herokuapp.com/static/views/novo/error.html');
 
         }
     });
