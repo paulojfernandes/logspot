@@ -137,7 +137,7 @@ $(document).on("click", "#alert", function (e) {
 });
 
 $(document).on("click", "#alterarDadosUser", function (e) {
-    ;
+    
 
 
     var data = {};
@@ -167,7 +167,7 @@ $(document).on("click", "#alterarDadosUser", function (e) {
 
 
 $(document).on("click", "#alterarPassword", function (e) {
-    ;
+    
 
 
     if ($('#passNova').val() == $('#passNova2').val()) {
@@ -293,7 +293,7 @@ $(document).on("click", "#removerAtividade", function (e) {
 
 
 $(document).on("click", "#atualizarAtividade", function (e) {
-    ;
+    
     $("#myModal").removeClass("in");
     $(".modal-backdrop").remove();
 

@@ -49,7 +49,7 @@ $(document).ready(function () {
         $("#container").load('https://logspot.herokuapp.com/static/views/novo/alterarAtividade.html');
     });
 
-
+ 
     $(document).on("click", "#registo", function () {
         $("#container").empty();
         $("#container").load('https://logspot.herokuapp.com/static/views/registos.html');
