@@ -49,7 +49,7 @@ $(document).ready(function () {
         $("#container").load('https://logspot.herokuapp.com/static/views/novo/alterarAtividade.html');
     });
 
- 
+
     $(document).on("click", "#registo", function () {
         $("#container").empty();
         $("#container").load('https://logspot.herokuapp.com/static/views/registos.html');
@@ -80,7 +80,7 @@ $(document).ready(function () {
 
 
     $(document).on("click", "#importarUtiizadores", function (e) {
-      
+
         ajaxEnviar("importUser", lines)
 
 
@@ -115,8 +115,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#voltarPagina", function () {
-        $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/registos.html');
+        location.reload(true)
     });
 
 
