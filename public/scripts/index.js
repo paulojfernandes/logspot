@@ -152,7 +152,7 @@ $(document).ready(function () {
 
   
 
-        modal.append()
+        modal.append( mapa.replace(/\s/g, ''))
 
 
     });
