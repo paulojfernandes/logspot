@@ -148,11 +148,12 @@ $(document).ready(function () {
         var mapa= '<img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=%20%20' + lat + ',' + lng + '%20&zoom=15&size=700x700&sensor=false&markers=color:red%7C' + lat + ',' + lng + '" >'
         console.log(lat, lng)
         console.log("mapa", mapa.replace(/\s/g, ''))
+        var mapa2=mapa.replace(/\s/g, '')
         //$(this).parent().parent().find("#lat")
 
   
 
-        modal.append( mapa.replace(/\s/g, ''))
+        modal.append(mapa2)
 
 
     });
