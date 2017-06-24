@@ -344,7 +344,7 @@ exports.inserirAtividade = function (req, res) {
     });
 
 
-    connection.query(' INSERT into l_atividade(id_tipo_atividade,titulo,id_empresa,id_agenda,id_localizacao,qr_code)values(1,"' + req.body.nomeAtividade + ' ",( select ls_empresa.id_empresa from ls_empresa,ls_utilizador, ls_contacto where ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_contacto= ls_contacto.id_contacto and ls_contacto.email = "paulojdf@sapo.pt"),(SELECT MAX(id_agenda)  FROM ls_agenda),(SELECT MAX(id_localizacao)  FROM ls_localizacao),"' + req.body.qrCode + '");', function (err, rows, fields) {
+    connection.query(' INSERT into l_atividade(id_tipo_atividade,titulo,id_empresa,id_agenda,id_localizacao,qr_code)values(1,"' + req.body.nomeAtividade + ' ",( select ls_empresa.id_empresa from ls_empresa,ls_utilizador, ls_contacto where ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_contacto= ls_contacto.id_contacto and ls_contacto.email = "'+req.session.username+'"),(SELECT MAX(id_agenda)  FROM ls_agenda),(SELECT MAX(id_localizacao)  FROM ls_localizacao),"' + req.body.qrCode + '");', function (err, rows, fields) {
         if (!err) {
             res.send("Registo Efetuado")
         } else {
