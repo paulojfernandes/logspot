@@ -129,17 +129,9 @@ exports.dadosLogin = function (req, res) {
 
 exports.receberDadosAtividade = function (req, res) {
     console.log(req.session.username)
-    connection.query('SELECT l_atividade.id_atividade, qr_code, lat, lng,titulo FROM  l_atividade, ls_localizacao WHERE l_atividade.id_localizacao = ls_localizacao.id_localizacao AND id_atividade =' + req.body.id + ';', function (err, rows, fields) {
-        if (!err) {
-            console.log(rows);
-            res.send(rows)
-        } else {
-            console.log('Error while performing Query.', err);
-        }
+    var query = 'SELECT l_atividade.id_atividade, qr_code, lat, lng,titulo FROM  l_atividade, ls_localizacao WHERE l_atividade.id_localizacao = ls_localizacao.id_localizacao AND id_atividade =' + req.body.id + ';'
 
-    });
-
-
+    queryStandard(query, req, res)
 
 }
 exports.registarUserAtividade = function (req, res) {
@@ -175,16 +167,9 @@ exports.registarUserAtividade = function (req, res) {
 exports.historicoRegisto = function (req, res) {
 
 
-    connection.query("    SELECT titulo,tipo_atividade, DATE_FORMAT(dia_realizacao, '%d/%m/%Y %H:%i') AS data, cidade FROM l_atividade,ls_tipo_atividade, ls_empresa,  ls_agenda,  ls_registo, ls_localizacao,ls_utilizador, ls_contacto WHERE l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade  AND ls_registo.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao AND ls_registo.id_utilizador = ls_utilizador.id_utilizador  AND ls_utilizador.id_contacto = ls_contacto.id_contacto   AND ls_contacto.email = '" + req.session.username + "' AND ls_registo.id_atividade = l_atividade.id_atividade;", function (err, rows, fields) {
-        if (!err) {
-            console.log("entrei");
-            res.send(rows)
-        } else {
-            console.log('Error while performing Query.', err);
-        }
+    var query = "    SELECT titulo,tipo_atividade, DATE_FORMAT(dia_realizacao, '%d/%m/%Y %H:%i') AS data, cidade FROM l_atividade,ls_tipo_atividade, ls_empresa,  ls_agenda,  ls_registo, ls_localizacao,ls_utilizador, ls_contacto WHERE l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade  AND ls_registo.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao AND ls_registo.id_utilizador = ls_utilizador.id_utilizador  AND ls_utilizador.id_contacto = ls_contacto.id_contacto   AND ls_contacto.email = '" + req.session.username + "' AND ls_registo.id_atividade = l_atividade.id_atividade;"
 
-    });
-
+    queryStandard(query, req, res)
 
 
 }
@@ -294,16 +279,9 @@ exports.addAdmin = function (req, res) {
 exports.obterUser = function (req, res) {
 
 
-    connection.query('select nome, apelido,DATE_FORMAT(data_nasc, "%Y/%m/%d") as data,email from ls_utilizador,ls_contacto where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email= "' + req.session.username + '" ;', function (err, rows, fields) {
-        if (!err) {
-            res.send(rows)
-        } else {
-            console.log('Error while performing Query.', err);
-        }
+    var query = 'select nome, apelido,DATE_FORMAT(data_nasc, "%Y/%m/%d") as data,email from ls_utilizador,ls_contacto where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email= "' + req.session.username + '" ;'
 
-    })
-
-
+    queryStandard(query, req, res)
 
 }
 
@@ -331,29 +309,18 @@ exports.alterarDadosUser = function (req, res) {
 
 exports.obterAtividades = function (req, res) {
 
-    connection.query('SELECT  l_atividade.id_atividade,titulo,tipo_atividade,ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%m/%d/%Y %H:%i") as data, cidade,lat,lng,cod_postal,qr_code from  l_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND l_atividade.id_empresa = ls_empresa.id_empresa   AND l_atividade.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao    ', function (err, rows, fields) {
-        if (!err) {
-            console.log("entrei");
-            res.send(rows)
-        } else {
-            console.log('Error while performing Query.', err);
-        }
+    var query = 'SELECT  l_atividade.id_atividade,titulo,tipo_atividade,ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%m/%d/%Y %H:%i") as data, cidade,lat,lng,cod_postal,qr_code from  l_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND l_atividade.id_empresa = ls_empresa.id_empresa   AND l_atividade.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao    '
 
-    });
+    queryStandard(query, req, res)
 }
 
 
 
 exports.obterAtividadesAlter = function (req, res) {
-    connection.query('SELECT  l_atividade.id_atividade,titulo,tipo_atividade,ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%Y-%m-%dT%H:%i") as data, cidade,lat,lng,cod_postal,qr_code from  l_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND l_atividade.id_empresa = ls_empresa.id_empresa   AND l_atividade.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao and l_atividade.id_atividade=' + req.body.idAtividade + ';  ', function (err, rows, fields) {
-        if (!err) {
-            console.log("entrei");
-            res.send(rows)
-        } else {
-            console.log('Error while performing Query.', err);
-        }
+    var query = 'SELECT  l_atividade.id_atividade,titulo,tipo_atividade,ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%Y-%m-%dT%H:%i") as data, cidade,lat,lng,cod_postal,qr_code from  l_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND l_atividade.id_empresa = ls_empresa.id_empresa   AND l_atividade.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao and l_atividade.id_atividade=' + req.body.idAtividade + ';  '
 
-    });
+
+    queryStandard(query, req, res)
 }
 
 exports.inserirAtividade = function (req, res) {
@@ -405,17 +372,9 @@ exports.alterarAtividade = function (req, res) {
 
 exports.dadosAPI = function (req, res) {
     console.log(req.params.empresa)
-    connection.query("select titulo, dia_realizacao, lat, lng from ls_agenda,l_atividade,ls_localizacao,ls_empresa where  l_atividade.id_agenda = ls_agenda.id_agenda AND l_atividade.id_localizacao= ls_localizacao.id_localizacao and ls_empresa.id_empresa= l_atividade.id_empresa and ls_empresa.nome='" + req.params.empresa + "'", function (err, rows, fields) {
-        if (!err) {
-            res.send(rows)
-        } else {
-            console.log('Error while performing Query.', err);
-            res.status(500).send("Erro BD");
-        }
+    var query = "select titulo, dia_realizacao, lat, lng from ls_agenda,l_atividade,ls_localizacao,ls_empresa where  l_atividade.id_agenda = ls_agenda.id_agenda AND l_atividade.id_localizacao= ls_localizacao.id_localizacao and ls_empresa.id_empresa= l_atividade.id_empresa and ls_empresa.nome='" + req.params.empresa + "'"
 
-    });
-
-
+    queryStandard(query, req, res)
 
 }
 
@@ -585,13 +544,13 @@ function queryDashboard(query, req, res, fim) {
 }
 
 function queryStandard(query, req, res) {
+    console.log(req.session)
 
     connection.query(query, function (err, rows, fields) {
         if (!err) {
-            console.log("entrei");
             res.send(rows)
         } else {
-            console.log('Error while performing Query.', err);
+            res.status(500).send("Erro BD");
         }
 
     });
