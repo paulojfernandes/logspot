@@ -46,7 +46,7 @@ function myFunction() {
             var tempo = $(this).find("#countdown").text();
             // console.log("t:", tempo)
             if ((tempo >= "01:00:00") || (tempo == "00:00:00")) {
-                // $(this).find("#registar").prop('disabled', true)
+                $(this).find("#registar").prop('disabled', true)
             }
 
         });
