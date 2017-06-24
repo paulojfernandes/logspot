@@ -77,7 +77,7 @@ $("#descodificar").on("click", function (e) {
         };
 
         //console.log(result)
-        verificarQRCode("QRCODE")
+        verificarQRCode(result)
 
     });
 
@@ -89,7 +89,7 @@ $("#descodificar").on("click", function (e) {
 
 function verificarQRCode(qr) {
     console.log(sessionStorage.getItem("q"))
-    if ("QRCODE" == "QRCODE") {
+    if (qr == sessionStorage.getItem("q")) {
         //  alert("QRCODE correcto, será registado a sua entrada")
         $("#divLocalizacao").hide()
         $("#divQR").hide()
