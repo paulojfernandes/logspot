@@ -110,6 +110,7 @@ exports.dadosLogin = function (req, res) {
                     req.session.username = rows[0].email;
                     req.session.password = rows[0].pass;
                     req.session.typeUser = rows[0].id_tipo_utilizador;
+                    req.session.company = rows[0].id_empresa;
 
 
                     res.status(200).send("sucess")
