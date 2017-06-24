@@ -2,9 +2,15 @@
   "name": "LogSpot",
   "short_name": "LS",
   "theme_color": "#2196f3",
-  "background_color": "#2196f3",
+  "background_color": "#01303f",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "/"
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "https://logspot.herokuapp.com/static/img/logo.png",
+      "sizes": "72x72 96x96 128x128 256x256"
+    }
+  ]
 }
