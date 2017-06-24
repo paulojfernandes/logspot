@@ -242,7 +242,7 @@ exports.addAdmin = function (req, res) {
                 console.log(pass)
 
 
-                connection.query("insert into ls_utilizador(nome,apelido,pass,data_nasc,id_empresa,id_contacto,id_tipo_utilizador,id_localizacao) values('" + req.body.nomeAdmin + "','" + req.body.apelidoAdmin + "','" + pass + "','1970-01-01',1," + rows.insertId + ",2,1); ", function (err, rows, fields) {
+                connection.query("insert into ls_utilizador(nome,apelido,pass,data_nasc,id_empresa,id_contacto,id_tipo_utilizador,id_localizacao) values('" + req.body.nomeAdmin + "','" + req.body.apelidoAdmin + "','" + pass + "','1970-01-01',"+  req.session.company+"," + rows.insertId + ",2,1); ", function (err, rows, fields) {
                     if (!err) {
 
 
@@ -481,7 +481,7 @@ exports.dashboard = function (req, res) {
 
     })
 
-    connection.query('select count(ls_utilizador.id_utilizador) as total from ls_empresa,ls_utilizador where ls_empresa.id_empresa =1 and ls_empresa.id_empresa = ls_utilizador.id_empresa ;', function (err, rows, fields) {
+    connection.query('select count(ls_utilizador.id_utilizador) as total from ls_empresa,ls_utilizador where ls_empresa.id_empresa ='+  req.session.company+' and ls_empresa.id_empresa = ls_utilizador.id_empresa ;', function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
             dados.totalUser = rows
@@ -493,7 +493,7 @@ exports.dashboard = function (req, res) {
     })
 
 
-    connection.query('select count(l_atividade.id_atividade) as total from l_atividade, ls_empresa, ls_agenda where ls_empresa.id_empresa = l_atividade.id_empresa and l_atividade.id_agenda= ls_agenda.id_agenda and  ls_empresa.id_empresa =1;', function (err, rows, fields) {
+    connection.query('select count(l_atividade.id_atividade) as total from l_atividade, ls_empresa, ls_agenda where ls_empresa.id_empresa = l_atividade.id_empresa and l_atividade.id_agenda= ls_agenda.id_agenda and  ls_empresa.id_empresa ='+  req.session.company+';', function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
             dados.totalAtividades = rows
@@ -549,7 +549,7 @@ function queryStandard(query, req, res) {
 
     connection.query(query, function (err, rows, fields) {
         if (!err) {
-            res.send(rows)
+            res.status(200).send(rows)
         } else {
             res.status(500).send("Erro BD");
         }
