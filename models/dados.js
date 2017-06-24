@@ -456,17 +456,9 @@ exports.alterarPassword = function (req, res) {
 
 exports.obterAlertasAnteriores = function (req, res) {
 
-    connection.query('SELECT titulo, msg_alerta, dia_realizacao FROM ls_alertas, ls_alertas_atividade,l_atividade, ls_agenda WHERE  ls_alertas_atividade.id_atividade = l_atividade.id_atividade AND l_atividade.id_agenda = ls_agenda.id_agenda AND ls_alertas_atividade.id_alerta = ls_alertas.id_alerta AND (    (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 1) or( (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 2) and (DATE_SUB(dia_realizacao,INTERVAL 5 MINUTE) <= NOW()AND ls_alertas.id_alerta = 2)   )) ORDER BY ls_agenda.dia_realizacao DESC , l_atividade.id_atividade ASC , msg_alerta DESC  LIMIT 5;', function (err, rows, fields) {
-        if (!err) {
-            console.log("entrei");
-            res.send(rows)
-        } else {
-            console.log('Error while performing Query.', err);
-        }
+    var query = 'SELECT titulo, msg_alerta, dia_realizacao FROM ls_alertas, ls_alertas_atividade,l_atividade, ls_agenda WHERE  ls_alertas_atividade.id_atividade = l_atividade.id_atividade AND l_atividade.id_agenda = ls_agenda.id_agenda AND ls_alertas_atividade.id_alerta = ls_alertas.id_alerta AND (    (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 1) or( (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 2) and (DATE_SUB(dia_realizacao,INTERVAL 5 MINUTE) <= NOW()AND ls_alertas.id_alerta = 2)   )) ORDER BY ls_agenda.dia_realizacao DESC , l_atividade.id_atividade ASC , msg_alerta DESC  LIMIT 5;'
 
-    });
-
-
+    queryStandard(query, req, res)
 
 }
 
@@ -579,7 +571,7 @@ function queryDashboard(query, req, res, fim) {
     connection.query(query, function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
-      
+
             dados.tipoDados = rows
             if (fim == true) {
                 res.send(dados)
@@ -593,5 +585,17 @@ function queryDashboard(query, req, res, fim) {
 }
 
 function queryStandard(query, req, res) {
+
+    connection.query(query, function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            res.send(rows)
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    });
+
+
 
 }
