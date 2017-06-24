@@ -145,7 +145,7 @@ $(document).ready(function () {
 
         var lat = $(this).parent().parent().find("#lat").text()
         var lng = $(this).parent().parent().find("#lng").text()
-        var src = "https://maps.googleapis.com/maps/api/staticmap?center=%20%20' + lat + ',' + lng + '%20&zoom=15&size=700x700&sensor=false&markers=color:red%7C' + lat + ',' + lng + '"
+        var src = "https://maps.googleapis.com/maps/api/staticmap?center=%20%20" + lat + ',' + lng + '%20&zoom=15&size=700x700&sensor=false&markers=color:red%7C' + lat + ',' + lng 
         var mapa = '<img class="img-responsive" src=' + src.replace(/\s/g, '') +'>'
         console.log(lat, lng)
         console.log(mapa)
