@@ -101,11 +101,11 @@ function calcularDistancia(lat1, lon1, lat2, lon2, data) {
     var d = R * c; //distancia em metros
 
     console.log(d.toFixed(4))
-    if (d <= 150000) {
+    if (d <= 50) {
         // $("#divQR").show()
         // $("#descodificar").hide()
         pos = true
-        alert("Posição Aceite")
+       // alert("Posição Aceite")
 
 
         console.log("data", data.id)

@@ -195,7 +195,7 @@ $(document).on("click", "#alterarPassword", function (e) {
 
 
 $(document).on("click", "#inserirAtividade", function (e) {
-    ;
+    
 
 
     var data = {};
