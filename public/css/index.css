@@ -528,6 +528,7 @@ input[accept="file"] {
 		font-size: 15px;
 		font-weight: 100;
 		padding: 24px;
+		height: 50px;
 	}
 	.footer-distributed {
 		font: bold 14px sans-serif;
@@ -553,7 +554,7 @@ input[accept="file"] {
 		line-height: 210px;
 	}
 	h1 {
-		color: #0d1359;
+		
 		font-family: 'Chonburi';
 		font-size: 30px;
 	}
