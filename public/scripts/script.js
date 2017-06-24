@@ -28,7 +28,7 @@ $(document).on("click", "#registar", function () {
     // console.log($(this).parent().attr('id'))
     var data = {}
     data.id = $(this).parent().attr('id')
-    //window.location.href = "https://logspot.herokuapp.com/registos/registoActividade/:id";
+    //window.location.href = "http://localhost:3000/registos/registoActividade/:id";
 
 
     // verificar posição 
@@ -46,7 +46,7 @@ function myFunction() {
             var tempo = $(this).find("#countdown").text();
             // console.log("t:", tempo)
             if ((tempo >= "01:00:00") || (tempo == "00:00:00")) {
-                $(this).find("#registar").prop('disabled', true)
+                // $(this).find("#registar").prop('disabled', true)
             }
 
         });
@@ -95,7 +95,7 @@ setInterval(function () {
         //     type: 'POST',
         //     dataType: "json",
         //     contentType: 'application/json',
-        //     url: 'https://logspot.herokuapp.com/obterAlertasAnteriores',
+        //     url: 'http://localhost:3000/obterAlertasAnteriores',
         //     success: function (data) {
         //         console.log("Já estou")
         //         context = {
@@ -137,7 +137,7 @@ $(document).on("click", "#alert", function (e) {
 });
 
 $(document).on("click", "#alterarDadosUser", function (e) {
-    e.preventDefault();
+    ;
 
 
     var data = {};
@@ -155,14 +155,19 @@ $(document).on("click", "#alterarDadosUser", function (e) {
     // $('#dataAtividade').val("");
 
     console.log(data);
-    ajaxEnviar("alterarDadosUser", data)
+    if (data.nomeUser != "" &&
+        data.emailUser != "" &&
+        data.apelidoUser != "" && data.dataNasUser != "") {
+        ajaxEnviar("alterarDadosUser", data)
+    }
+
 
 
 });
 
 
 $(document).on("click", "#alterarPassword", function (e) {
-    e.preventDefault();
+    ;
 
 
     if ($('#passNova').val() == $('#passNova2').val()) {
@@ -170,16 +175,13 @@ $(document).on("click", "#alterarPassword", function (e) {
         data.passAntiga = $('#passAntiga').val();
         data.passNova = $('#passNova').val();
 
-
-
-        console.log(data);
-        ajaxEnviar("alterarPassword", data)
-
-
-
+        if (data.passAntiga != "" &&
+            data.passNova != "") {
+            ajaxEnviar("alterarPassword", data)
+        }
 
     } else {
-        alert("passerrada")
+        alert("Password Errada")
     }
 
 
@@ -193,7 +195,7 @@ $(document).on("click", "#alterarPassword", function (e) {
 
 
 $(document).on("click", "#inserirAtividade", function (e) {
-    e.preventDefault();
+    ;
 
 
     var data = {};
@@ -214,7 +216,17 @@ $(document).on("click", "#inserirAtividade", function (e) {
 
     console.log(data);
 
-    ajaxEnviar("inserirAtividade", data)
+    if (data.nomeAtividade != "" &&
+        data.codPostal != "" &&
+        data.cidade != "" &&
+        data.coordLat != "" &&
+        data.coordLng != "" &&
+        data.qrCode != "" &&
+        data.dataAtividade != "") {
+        ajaxEnviar("inserirAtividade", data)
+    }
+
+    
 
 
 
@@ -239,7 +251,7 @@ $(document).on("click", "#obterAtividade-alterar", function (e) {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/obterAtividadesAlter',
+        url: 'http://localhost:3000/obterAtividadesAlter',
         success: function (data) {
             console.log("Já estou")
             context = {
@@ -281,7 +293,7 @@ $(document).on("click", "#removerAtividade", function (e) {
 
 
 $(document).on("click", "#atualizarAtividade", function (e) {
-    e.preventDefault();
+    ;
     $("#myModal").removeClass("in");
     $(".modal-backdrop").remove();
 
@@ -309,7 +321,18 @@ $(document).on("click", "#atualizarAtividade", function (e) {
 
     console.log(data);
 
-    ajaxEnviar("atualizarAtividade", data)
+        if (data.nomeAtividade != "" &&
+        data.codPostal != "" &&
+        data.cidade != "" &&
+        data.coordLat != "" &&
+        data.coordLng != "" &&
+        data.qrCode != "" &&
+        data.dataAtividade != "") {
+        ajaxEnviar("atualizarAtividade", data)
+    }
+
+
+   
 
 });
 
@@ -356,7 +379,7 @@ $(document).on("click", "#logOut", function (e) {
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 
-    location.href = "https://logspot.herokuapp.com/"
+    location.href = "http://localhost:3000/"
 
 
 });
@@ -369,7 +392,7 @@ function ajaxObter(url, template, msg) {
         type: 'POST',
         dataType: "json",
         contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/' + url,
+        url: 'http://localhost:3000/' + url,
         success: function (data) {
             console.log("Já estou")
             context = {
@@ -392,20 +415,20 @@ function ajaxEnviar(url, data, template, msg) {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
-        url: 'https://logspot.herokuapp.com/' + url,
+        url: 'http://localhost:3000/' + url,
         success: function (data) {
             console.log('success:');
             console.log(JSON.stringify(data));
 
             $("#container").empty();
-            $("#container").load('https://logspot.herokuapp.com/static/views/novo/check.html');
+            $("#container").load('http://localhost:3000/static/views/novo/check.html');
 
         },
         error: function (error) {
             console.log(error)
 
             $("#container").empty();
-            $("#container").load('https://logspot.herokuapp.com/static/views/novo/error.html');
+            $("#container").load('http://localhost:3000/static/views/novo/error.html');
 
         }
     });
