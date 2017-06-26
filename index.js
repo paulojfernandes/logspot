@@ -52,7 +52,7 @@ app.get('/logspot', function (req, res) {
         else if (req.session.typeUser == 2)
             res.sendFile(path.join(__dirname + '/views/index3.html'));
     } else {
-        res.redirect("http://localhost:3000")
+        res.redirect("https://logspot.herokuapp.com")
 
     }
 
