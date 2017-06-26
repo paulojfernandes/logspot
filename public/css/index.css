@@ -12,7 +12,27 @@ body {
 	margin: 0;
 	margin-bottom: 0;
 }
+.box {
+	float:none;
 
+	width: 60px;
+	height: 20px;
+	margin: 0 auto;
+	
+}
+
+.blue {
+	background: rgba(5, 162, 235, 1);
+	width: 60px;
+}
+
+.pink {
+	background: rgba(255, 99, 500, 1);
+}
+
+.yellow {
+	background: rgba(255, 206, 86, 1);
+}
 
 /*.panel-default>.panel-heading {
 	border: 1px solid transparent;
