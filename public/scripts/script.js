@@ -206,6 +206,7 @@ $(document).on("click", "#inserirAtividade", function (e) {
     data.coordLng = $('#coordLng').val();
     data.qrCode = $('#qrCode').val();
     data.dataAtividade = new Date($('#dataAtividade').val());
+        data.tipoAtividade = $("#tipoAtividade").val()
     // $('#nome').val("");
     // $('#codPostal').val("");
     // $('#cidade').val("");
@@ -311,6 +312,7 @@ $(document).on("click", "#atualizarAtividade", function (e) {
     data.coordLng = $('#coordLng').val();
     data.qrCode = $('#qrCode').val();
     data.dataAtividade = new Date($('#dataAtividade').val());
+        data.tipoAtividade = $("#tipoAtividade").val()
     // $('#nome').val("");
     // $('#codPostal').val("");
     // $('#cidade').val("");
