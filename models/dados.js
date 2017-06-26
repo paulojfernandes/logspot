@@ -583,7 +583,7 @@ function queryStandard(query, req, res) {
         if (!err) {
             res.status(200).send(rows)
             console.log("entrei");
-            dados.totalA2D = rows
+        
             //res.send(dados)
         } else {
             res.status(500).send("Erro BD");
