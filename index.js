@@ -102,7 +102,7 @@ app.get('/logspot', function (req, res) {
 });
 
 app.get('*', function (req, res) {
-     res.status(400).send('404: File Not Found');
+     res.status(400)
 });
 
 
