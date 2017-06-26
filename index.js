@@ -80,7 +80,7 @@ app.get('/', function (req, res) {
         res.sendFile(path.join(__dirname + '/views/index.html'));
 
     }
-    
+
 });
 
 
@@ -102,7 +102,7 @@ app.get('/logspot', function (req, res) {
 });
 
 app.get('*', function (req, res) {
-     res.status(400)
+    res.sendFile(path.join(__dirname + '/views/404.html'));
 });
 
 
@@ -121,4 +121,3 @@ var port = process.env.PORT || 3000;
 
 
 app.listen(port)
-
