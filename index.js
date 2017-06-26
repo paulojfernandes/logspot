@@ -4,9 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var txt = [];
 var http = require('http');
-// var cookieParser = require('cookie-parser')
-// var cookieSession = require('cookie-session');
-//NPM Module to integrate Handlerbars UI template engine with Express
+
 var exphbs = require('express-handlebars');
 var app = express();
 
@@ -19,26 +17,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 
-// app.use(cookieParser());
-
-
-// app.use(cookieSession({
-//     name: 'session',
-//     keys: ["abc"],
-
-//     // Cookie Options
-//     maxAge: 60 * 60 * 1000,
-//     path: "/",
-//     httpOnly: false
-
-// }))
-
-
-
-//app.use(require('./middlewares/users'))
-
-
-
 
 //Declaring Express to use Handlerbars template engine with main.handlebars as the default layout
 app.engine('handlebars', exphbs({
@@ -47,30 +25,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 //Defining middleware to serve static files
 app.use('/static', express.static('public'));
-// app.get('/home', function (req, res) {
-//     res.sendFile(path.join(__dirname + '/views/index.html'));
-//     // if (req.session.username == null & req.session.password == null) {
-//     //     console.log("Alguem logado212121")
-//     //     res.redirect("/")
-//     // }
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/listas', function (req, res) {
-//    // res.sendFile(path.join(__dirname + '/views/listas.html'));
-//     if (req.session.username == null & req.session.password == null) {
-//         console.log("Alguem logado212121")
-//         res.redirect("/")
-//     }
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/registos', function (req, res) {
-//     res.sendFile(path.join(__dirname + '/views/registos.html'));
-//     // if (req.session.username == null & req.session.password == null) {
-//     //     console.log("Alguem logado212121")
-//     //     res.redirect("/")
-//     // }
-//     //__dirname : It will resolve to your project folder.
-// });
+
 app.get('/', function (req, res) {
     //res.sendFile(path.join(__dirname + '/views2/Login.html'));
 
@@ -79,7 +34,7 @@ app.get('/', function (req, res) {
     } else {
         res.sendFile(path.join(__dirname + '/views/index.html'));
 
-        
+
 
     }
 
