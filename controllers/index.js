@@ -159,13 +159,7 @@ router.post("/dashboard", function (req, res) {
 
 });
 
-// router.post("/logOut", function (req, res) {
-//     req.session = null
-//     res.redirect(req.get('referer'));
 
-
-
-// });
 router.get('/atividade/:empresa', function (req, res) {
     var empresa = req.params.empresa;
     //res.send(empresa)

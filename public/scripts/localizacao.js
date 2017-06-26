@@ -13,46 +13,7 @@ function geoFindMe(laAct, lnAct, data) {
         console.log(latitude, longitude)
 
 
-        // output.innerHTML = '<p id="lat">' + latitude + '</p>' + '<p id="lng">' + longitude + '</p>'
-        // $("#form").show();
-        // var img = new Image();
-        // img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
-        //"https://maps.googleapis.com/maps/api/staticmap?center=%20%2041.1476629%20%20,%20%20-8.6078973%20&zoom=15&size=700x300&sensor=false&markers=color:red%7C41.1476629,-8.6078973"
-        // output.appendChild(img);
-
-
-        // var marker = new google.maps.Marker({
-        //     position: {
-        //         lat: latitude,
-        //         lng: longitude
-        //     },
-        //     title: "Sua Posição!"
-        // });
-
-        // marker.setMap(map);
-
-        // var lnAct = sessionStorage.getItem("ln"),
-        //     laAct = sessionStorage.getItem("la")
-
-        // var local = new google.maps.LatLng(laAct, lnAct);
-        // var myCity = new google.maps.Circle({
-        //     center: local,
-        //     radius: 500,
-        //     strokeColor: "#FF0000",
-        //     strokeOpacity: 0.6,
-        //     strokeWeight: 2,
-        //     fillColor: "#FF0000",
-        //     fillOpacity: 0.2
-        // });
-        // myCity.setMap(map);
-
-
-        // map.setCenter({
-        //     lat: latitude,
-        //     lng: longitude
-        // });
-
-        // map.setZoom(15) //41.403606, -8.675150
+  
 
         calcularDistancia(latitude, longitude, laAct, lnAct, data);
     }

@@ -1,18 +1,7 @@
-// var conta1 = document.getElementById("cont1").value;
-// var conta2 = document.getElementById("cont2").value;
-// var conta3 = document.getElementById("cont3").value;
-// var conta4 = document.getElementById("cont4").value;
-
-// console.log(conta1);
 
 var ctx = document.getElementById("myChart").getContext('2d');
 var ctx2 = document.getElementById("myChart2").getContext('2d');
-//var ctx3 = document.getElementById("myChart3").getContext('2d');
-// var ctx4 = document.getElementById("myChart4").getContext('2d');
 var ctx5 = document.getElementById("myChart5").getContext('2d');
-
-
-
 
 
 
@@ -48,7 +37,7 @@ function chartCircle(canvas, labels, data) {
 }
 
 function chartLines(canvas, labels, data) {
-    //console.log(data,data[0]["0"].total ,data[3]["0"].total)
+  
 
     var myChart2 = new Chart(canvas, {
         type: 'line',
@@ -77,8 +66,3 @@ function chartLines(canvas, labels, data) {
 
 }
 
-
-// chartCircle(ctx4, "", [20, 4, 46, 84])
-
-//chartLines(ctx5, "", [40, 4, 46, 8])
-//chartLines(ctx2, "", [40, 4, 46, 8])

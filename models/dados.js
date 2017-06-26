@@ -65,11 +65,6 @@ console.log("models")
 
 exports.dadosAtividadesRegisto = function (req, res) {
 
-    // var select, from, where
-    // var querySelect = " SELECT " + select + " FROM" + from + " WHERE " + where
-
-
-    //and DATE_FORMAT(dia_realizacao, "%Y/%m/%d") = curdate(); 
     var query = 'SELECT  l_atividade.id_atividade,titulo,tipo_atividade,lat, lng , ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%m/%d/%Y %H:%i") as data, DATE_FORMAT(dia_realizacao, "%Y/%m/%d %H:%i") as data2,cidade from  l_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND l_atividade.id_empresa = ls_empresa.id_empresa and  ls_empresa.id_empresa=' + req.session.company + '   AND l_atividade.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao and DATE_FORMAT(dia_realizacao, "%Y/%m/%d") = curdate();  '
 
 
@@ -237,18 +232,7 @@ exports.addAdmin = function (req, res) {
 
                 connection.query("insert into ls_utilizador(nome,apelido,pass,data_nasc,id_empresa,id_contacto,id_tipo_utilizador,id_localizacao) values(" + nome + "," + apelido + ",'" + pass + "','1970-01-01',1," + rows.insertId + ",2,1); ", function (err, rows, fields) {
                     if (!err) {
-
-
-                        // // send mail with defined transport object
-                        // transporter.sendMail(mailOptions, (error, info) => {
-                        //     if (error) {
-                        //         return console.log(error);
-                        //     }
-                        //     console.log('Message %s sent: %s', info.messageId, info.response);
-                        // });
                         sendEmail(req.body.emailAdmin, pass)
-
-                        //console.log("user2", rows.insertId, element[0], element[1])
                         res.send("sucess")
 
                     } else {
@@ -271,11 +255,7 @@ exports.addAdmin = function (req, res) {
 
 
 exports.obterUser = function (req, res) {
-
-
-    var query= 'select nome, apelido,DATE_FORMAT(data_nasc, "%Y/%m/%d") as data,email from ls_utilizador,ls_contacto where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email= "' + req.session.username + '" ;'
-     
-
+    var query = 'select nome, apelido,DATE_FORMAT(data_nasc, "%Y/%m/%d") as data,email from ls_utilizador,ls_contacto where ls_utilizador.id_contacto=ls_contacto.id_contacto and ls_contacto.email= "' + req.session.username + '" ;'
     queryStandard(query, req, res)
 
 }
@@ -306,11 +286,8 @@ exports.alterarDadosUser = function (req, res) {
 }
 
 exports.obterAtividades = function (req, res) {
-
-   var query= 'SELECT  l_atividade.id_atividade,titulo,tipo_atividade,ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%m/%d/%Y %H:%i") as data, cidade,lat,lng,cod_postal,qr_code from  l_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND l_atividade.id_empresa = ls_empresa.id_empresa   AND l_atividade.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao    '
- 
-
-      queryStandard(query, req, res)
+    var query = 'SELECT  l_atividade.id_atividade,titulo,tipo_atividade,ls_empresa.nome,DATE_FORMAT(dia_realizacao, "%m/%d/%Y %H:%i") as data, cidade,lat,lng,cod_postal,qr_code from  l_atividade,ls_tipo_atividade,ls_empresa,ls_agenda,ls_localizacao where  l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade AND l_atividade.id_empresa = ls_empresa.id_empresa   AND l_atividade.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao    '
+    queryStandard(query, req, res)
 }
 
 
@@ -391,10 +368,10 @@ exports.alterarAtividade = function (req, res) {
 exports.dadosAPI = function (req, res) {
     console.log(req.params.empresa)
     var empresa = connection.escape(req.params.empresa)
-    var query= "select titulo, dia_realizacao, lat, lng from ls_agenda,l_atividade,ls_localizacao,ls_empresa where  l_atividade.id_agenda = ls_agenda.id_agenda AND l_atividade.id_localizacao= ls_localizacao.id_localizacao and ls_empresa.id_empresa= l_atividade.id_empresa and ls_empresa.nome=" + empresa
-       
+    var query = "select titulo, dia_realizacao, lat, lng from ls_agenda,l_atividade,ls_localizacao,ls_empresa where  l_atividade.id_agenda = ls_agenda.id_agenda AND l_atividade.id_localizacao= ls_localizacao.id_localizacao and ls_empresa.id_empresa= l_atividade.id_empresa and ls_empresa.nome=" + empresa
 
-      queryStandard(query, req, res)
+
+    queryStandard(query, req, res)
 
 
 
@@ -406,7 +383,6 @@ exports.removerAtividade = function (req, res) {
             console.log('Error while performing Query.212121');
         }
     });
-
     connection.query(' delete l_atividade, ls_agenda, ls_localizacao from l_atividade, ls_agenda, ls_localizacao where id_atividade =' + req.body.idAtividade + ' and l_atividade.id_agenda = ls_agenda.id_agenda and l_atividade.id_localizacao = ls_localizacao.id_localizacao; ', function (err, rows, fields) {
         if (!err) {
 
@@ -414,7 +390,6 @@ exports.removerAtividade = function (req, res) {
         } else {
             console.log('Error while performing Query.', err);
         }
-
     });
 
 }
@@ -438,11 +413,8 @@ exports.alterarPassword = function (req, res) {
 }
 
 exports.obterAlertasAnteriores = function (req, res) {
-
-   var query= 'SELECT titulo, msg_alerta, dia_realizacao FROM ls_alertas, ls_alertas_atividade,l_atividade, ls_agenda WHERE  ls_alertas_atividade.id_atividade = l_atividade.id_atividade AND l_atividade.id_agenda = ls_agenda.id_agenda AND ls_alertas_atividade.id_alerta = ls_alertas.id_alerta AND (    (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 1) or( (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 2) and (DATE_SUB(dia_realizacao,INTERVAL 5 MINUTE) <= NOW()AND ls_alertas.id_alerta = 2)   )) ORDER BY ls_agenda.dia_realizacao DESC , l_atividade.id_atividade ASC , msg_alerta DESC  LIMIT 5;'
-      queryStandard(query, req, res)
-
-
+    var query = 'SELECT titulo, msg_alerta, dia_realizacao FROM ls_alertas, ls_alertas_atividade,l_atividade, ls_agenda WHERE  ls_alertas_atividade.id_atividade = l_atividade.id_atividade AND l_atividade.id_agenda = ls_agenda.id_agenda AND ls_alertas_atividade.id_alerta = ls_alertas.id_alerta AND (    (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 1) or( (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 2) and (DATE_SUB(dia_realizacao,INTERVAL 5 MINUTE) <= NOW()AND ls_alertas.id_alerta = 2)   )) ORDER BY ls_agenda.dia_realizacao DESC , l_atividade.id_atividade ASC , msg_alerta DESC  LIMIT 5;'
+    queryStandard(query, req, res)
 }
 
 
@@ -531,7 +503,7 @@ exports.dashboard = function (req, res) {
         if (!err) {
             console.log("entrei");
             dados.totalRegistos = rows
-            //res.send(dados)
+
         } else {
             console.log('Error while performing Query.', err);
         }
@@ -543,7 +515,7 @@ exports.dashboard = function (req, res) {
         if (!err) {
             console.log("entrei");
             dados.totalA1D = rows
-            //res.send(dados)
+
         } else {
             console.log('Error while performing Query.', err);
         }
@@ -555,7 +527,7 @@ exports.dashboard = function (req, res) {
         if (!err) {
             console.log("entrei");
             dados.totalA2D = rows
-            //res.send(dados)
+
         } else {
             console.log('Error while performing Query.', err);
         }
@@ -583,8 +555,8 @@ function queryStandard(query, req, res) {
         if (!err) {
             res.status(200).send(rows)
             console.log("entrei");
-        
-            //res.send(dados)
+
+
         } else {
             res.status(500).send("Erro BD");
             console.log('Error while performing Query.', err);

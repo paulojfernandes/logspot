@@ -75,18 +75,18 @@ app.get('/', function (req, res) {
     //res.sendFile(path.join(__dirname + '/views2/Login.html'));
 
     if (req.session.username != null & req.session.password != null) {
-        res.redirect("http://localhost:3000/logspot")
+        res.redirect("https://logspot.herokuapp.com/logspot")
     } else {
         res.sendFile(path.join(__dirname + '/views/index.html'));
 
     }
-    //__dirname : It will resolve to your project folder.
+    
 });
 
 
 
 app.get('/logspot', function (req, res) {
-    //res.sendFile(path.join(__dirname + '/views2/Login.html'));
+
 
     if (req.session.username != null & req.session.password != null) {
         console.log("Alguem logado")
@@ -98,12 +98,12 @@ app.get('/logspot', function (req, res) {
         res.redirect("http://localhost:3000")
 
     }
-    //__dirname : It will resolve to your project folder.
-});
-// app.get('/registos/registoActividade/',function(req,res){
-// //res.sendFile(path.join(__dirname + '/views/lqr.html'));
-// });
 
+});
+
+app.get('*', function (req, res) {
+    res.send('what???', 404);
+});
 
 
 app.post('/home', function (req, res) {
@@ -115,102 +115,6 @@ app.post('/home', function (req, res) {
 
 
 
-//     function queryInserir(req, res) {
-//         console.log("nome:" + req.body.nome)
-//         connection.query('SET foreign_key_checks = 0;', function (err, rows, fields) {
-//             if (err) {
-//                 console.log('Error while performing Query.212121');
-//             }
-//         });
-
-//         connection.query('INSERT INTO ls_empresa(nome,id_tipo_empresa,id_contacto,cod_postal) VALUES("' + req.body.nome + '",1,1,"252")', function (err, rows, fields) {
-//             if (err) {
-//                 console.log('Error while performing Query.' + err);
-//             }
-
-
-//         });
-
-
-
-//     }
-
-
-
-
-
-
-// var mongoose = require('mongoose');
-
-// mongoose.connect('mongodb://logspot:logspot2017@ds151451.mlab.com:51451/logspot');
-// mongoose.Promise = global.Promise;
-
-
-
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-
-
-//     var userName = new mongoose.Schema({
-//         nome: {
-//             type: String
-//         },
-//         pass: {
-//             type: String
-//         }
-
-//     });
-
-//     var Utilizadores = mongoose.model('Utilis', userName, "Utilizadores");
-
-
-// Utilizadores.find({}, function (err, users) {
-//     if (err) return console.error(err);
-//     console.log("oooo:", users);
-// })
-
-// Utilizadores.find({
-//     "nome": "paulo"
-// }, function (err, users) {
-//     if (err) return console.error(err);
-//     console.log("oooo:", users);
-// })
-
-
-
-// Utilizadores.find({
-//     "user": {
-//         "nome": 'joao'
-//     }
-// }, function (err, users) {
-//     if (err) return console.error(err);
-//     console.log("oooo:", users);
-// })
-
-
-// var user = new Utilizadores({    
-//         nome: "paulofer",
-//         pass: "12345"        
-
-// })
-// user.save(function (err) {
-//     if (err) throw err;
-//     console.log('User saved successfully!');
-// });
-
-
-//     Utilizadores.find({
-
-//         "nome": 'paulo'
-
-//     }, function (err, users) {
-//         if (err) return console.error(err);
-//         console.log("oooo:", users);
-//     })
-
-//     // we're connected!
-// });
 
 
 var port = process.env.PORT || 3000;
@@ -218,6 +122,3 @@ var port = process.env.PORT || 3000;
 
 app.listen(port)
 
-// app.listen(3000, function () {
-//     console.log('Server up: http://localhost:3000');
-// });
