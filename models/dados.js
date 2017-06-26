@@ -307,7 +307,7 @@ exports.alterarDadosUser = function (req, res) {
 
     var nomeUser = connection.escape(req.body.nomeUser);
     var apelidoUser = connection.escape(req.body.apelidoUser);
-    var nomeUser = connection.escape(req.body.emailUser);
+    var emailUser = connection.escape(req.body.emailUser);
 
     console.log(req.body)
 
