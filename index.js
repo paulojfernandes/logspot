@@ -32,7 +32,7 @@ app.get('/', function (req, res) {
     if (req.session.username != null & req.session.password != null) {
         res.redirect("https://logspot.herokuapp.com/logspot")
     } else {
-        res.sendFile(path.join(__dirname + '/views/index.html'));
+        res.sendFile(path.join(__dirname + '/views/.html'));
 
 
 
