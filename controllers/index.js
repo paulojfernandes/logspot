@@ -168,6 +168,13 @@ router.get('/atividade/:empresa', function (req, res) {
 });
 
 
+router.get('/atividade/:fwfwfwf', function (req, res) {
+
+});
+
+
+
+
 
 
 
