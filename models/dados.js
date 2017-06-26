@@ -415,7 +415,7 @@ exports.alterarAtividade = function (req, res) {
             res.send("Atividade Alterada")
         } else {
             console.log('Error while performing Query.', err);
-            res.status(500).send("Erro BD");
+            //res.status(500).send("Erro BD");
         }
 
     });

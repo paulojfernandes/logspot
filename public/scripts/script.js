@@ -137,7 +137,7 @@ $(document).on("click", "#alert", function (e) {
 });
 
 $(document).on("click", "#alterarDadosUser", function (e) {
-    
+
 
 
     var data = {};
@@ -167,7 +167,7 @@ $(document).on("click", "#alterarDadosUser", function (e) {
 
 
 $(document).on("click", "#alterarPassword", function (e) {
-    
+
 
 
     if ($('#passNova').val() == $('#passNova2').val()) {
@@ -195,7 +195,7 @@ $(document).on("click", "#alterarPassword", function (e) {
 
 
 $(document).on("click", "#inserirAtividade", function (e) {
-    
+
 
 
     var data = {};
@@ -206,7 +206,7 @@ $(document).on("click", "#inserirAtividade", function (e) {
     data.coordLng = $('#coordLng').val();
     data.qrCode = $('#qrCode').val();
     data.dataAtividade = new Date($('#dataAtividade').val());
-        data.tipoAtividade = $("#tipoAtividade").val()
+    data.tipoAtividade = $("#tipoAtividade").val()
     // $('#nome').val("");
     // $('#codPostal').val("");
     // $('#cidade').val("");
@@ -227,7 +227,7 @@ $(document).on("click", "#inserirAtividade", function (e) {
         ajaxEnviar("inserirAtividade", data)
     }
 
-    
+
 
 
 
@@ -294,7 +294,7 @@ $(document).on("click", "#removerAtividade", function (e) {
 
 
 $(document).on("click", "#atualizarAtividade", function (e) {
-    
+
     $("#myModal").removeClass("in");
     $(".modal-backdrop").remove();
 
@@ -312,7 +312,7 @@ $(document).on("click", "#atualizarAtividade", function (e) {
     data.coordLng = $('#coordLng').val();
     data.qrCode = $('#qrCode').val();
     data.dataAtividade = new Date($('#dataAtividade').val());
-        data.tipoAtividade = $("#tipoAtividade").val()
+    data.tipoAtividade = $("#tipoAtividade").val()
     // $('#nome').val("");
     // $('#codPostal').val("");
     // $('#cidade').val("");
@@ -323,7 +323,7 @@ $(document).on("click", "#atualizarAtividade", function (e) {
 
     console.log(data);
 
-        if (data.nomeAtividade != "" &&
+    if (data.nomeAtividade != "" &&
         data.codPostal != "" &&
         data.cidade != "" &&
         data.coordLat != "" &&
@@ -334,7 +334,7 @@ $(document).on("click", "#atualizarAtividade", function (e) {
     }
 
 
-   
+
 
 });
 
