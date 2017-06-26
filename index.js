@@ -79,6 +79,8 @@ app.get('/', function (req, res) {
     } else {
         res.sendFile(path.join(__dirname + '/views/index.html'));
 
+        
+
     }
 
 });
