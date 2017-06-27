@@ -413,7 +413,7 @@ exports.alterarPassword = function (req, res) {
 }
 
 exports.obterAlertasAnteriores = function (req, res) {
-    var query = 'SELECT titulo, msg_alerta, dia_realizacao FROM ls_alertas, ls_alertas_atividade,l_atividade, ls_agenda WHERE  ls_alertas_atividade.id_atividade = l_atividade.id_atividade AND l_atividade.id_agenda = ls_agenda.id_agenda AND ls_alertas_atividade.id_alerta = ls_alertas.id_alerta AND ls_registo.tipo_registo=1 and  (    (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 1) or( (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 2) and (DATE_SUB(dia_realizacao,INTERVAL 5 MINUTE) <= NOW()AND ls_alertas.id_alerta = 2)   )) ORDER BY ls_agenda.dia_realizacao DESC , l_atividade.id_atividade ASC , msg_alerta DESC  LIMIT 5;'
+    var query = 'SELECT titulo, msg_alerta, dia_realizacao FROM ls_alertas, ls_alertas_atividade,l_atividade, ls_agenda WHERE  ls_alertas_atividade.id_atividade = l_atividade.id_atividade AND l_atividade.id_agenda = ls_agenda.id_agenda AND ls_alertas_atividade.id_alerta = ls_alertas.id_alerta AND   (    (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 1) or( (DATE_SUB(dia_realizacao,INTERVAL 1 HOUR) <= NOW()AND ls_alertas.id_alerta = 2) and (DATE_SUB(dia_realizacao,INTERVAL 5 MINUTE) <= NOW()AND ls_alertas.id_alerta = 2)   )) ORDER BY ls_agenda.dia_realizacao DESC , l_atividade.id_atividade ASC , msg_alerta DESC  LIMIT 5;'
     queryStandard(query, req, res)
 }
 
@@ -422,7 +422,7 @@ exports.dashboard = function (req, res) {
     var dados = {}
 
 
-    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda  and ls_registo.tipo_registo=1 and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 15 minute);', function (err, rows, fields) {
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda  and ls_registo.id_tipo_registo=1 and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 15 minute);', function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
             dados.min15 = rows
@@ -432,7 +432,7 @@ exports.dashboard = function (req, res) {
 
     })
 
-    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_registo.tipo_registo=1 and  ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 30 minute);', function (err, rows, fields) {
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_registo.id_tipo_registo=1 and  ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 30 minute);', function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
             dados.min30 = rows
@@ -443,7 +443,7 @@ exports.dashboard = function (req, res) {
     })
 
 
-    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda, ls_registo.tipo_registo=1 and ls_utilizador,ls_registo where ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 45 minute);', function (err, rows, fields) {
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda, ls_registo.id_tipo_registo=1 and ls_utilizador,ls_registo where ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 45 minute);', function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
             dados.min45 = rows
@@ -454,7 +454,7 @@ exports.dashboard = function (req, res) {
     })
 
 
-    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_registo.tipo_registo=1 and  ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 1 HOUR);', function (err, rows, fields) {
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,ls_utilizador,ls_registo where ls_registo.id_tipo_registo=1 and  ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 1 HOUR);', function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
             dados.min60 = rows
