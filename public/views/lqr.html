@@ -51,9 +51,9 @@
             <div class="col-md-6">
                 <form>
                     <h3>Obter QRCode</h3>
-                    <label for="qrcode" class="custom-file-upload">
+                    <!--<label for="qrcode" class="custom-file-upload">
                      <i class="fa fa-cloud-upload fa-5x"></i> 
-                     </label>
+                     </label>-->
                     <!-- prompt the user, Camera or Gallery -->
                     <input id="qrcode" class="btn btn-primary" type="file" accept="image/*" />
                     <br>
@@ -73,12 +73,16 @@
 </div>
 <br>
 
-<div class="row" hidden id="confirmarRegisto">
+<div class="row" hidden id="confirmarRegisto" style="text-align: center">
+    <div class="col-md-12">
 
-    <h1> Está no local certo !</h1>
-    <h1> Deseja efectuar o registo</h1>
+        <h1> Está no local certo !</h1>
+        <h1> Deseja efectuar o registo</h1>
 
-    <button id="confRegisto" class="btn btn-primary">Sim</button> <button id="CancelRegisto" class="btn btn-danger">Não</button>
+        <button  style="margin-top: 15px" id="confRegisto" class="btn btn-primary">Sim</button> <button style="margin-top: 15px" id="CancelRegisto" class="btn btn-danger">Não</button>
+
+    </div>
+
 
 </div>
 

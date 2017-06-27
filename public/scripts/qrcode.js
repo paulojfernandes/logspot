@@ -50,7 +50,7 @@ function obterimg() {
                 img.height = 250;
                 img.className = 'rotate';
             } else {
-                img.width = 400;
+                img.width = 300;
             }
             console.log(img)
 
