@@ -90,7 +90,7 @@ setInterval(function () {
 
     }
     if (alertas == true) {
-        $("#alert").css('color', '#00e1ff');
+        $("#alert").css('color', '#ff3f3f');
         // $.ajax({
         //     type: 'POST',
         //     dataType: "json",
