@@ -423,14 +423,14 @@ function ajaxEnviar(url, data, template, msg) {
             console.log(JSON.stringify(data));
 
             $("#container").empty();
-            $("#container").load('https://logspot.herokuapp.com/static/views/novo/check.html');
+            $("#container").load('https://logspot.herokuapp.com/static/views/check.html');
 
         },
         error: function (error) {
             console.log(error)
 
             $("#container").empty();
-            $("#container").load('https://logspot.herokuapp.com/static/views/novo/error.html');
+            $("#container").load('https://logspot.herokuapp.com/static/views/error.html');
 
         }
     });
