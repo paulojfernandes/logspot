@@ -443,7 +443,7 @@ exports.dashboard = function (req, res) {
     })
 
 
-    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda, ls_registo.id_tipo_registo=1 and ls_utilizador,ls_registo where ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 45 minute);', function (err, rows, fields) {
+    connection.query('select count(ls_agenda.id_agenda) as total from ls_empresa,ls_agenda,  ls_utilizador,ls_registo where ls_empresa.id_empresa="' + req.session.company + '" and ls_empresa.id_empresa=ls_utilizador.id_empresa and  ls_registo.id_tipo_registo=1 and ls_utilizador.id_utilizador= ls_registo.id_utilizador and ls_registo.id_agenda= ls_agenda.id_agenda and ls_agenda.dia_realizacao> DATE_SUB(now(),INTERVAL 45 minute);', function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
             dados.min45 = rows
