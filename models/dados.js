@@ -465,10 +465,43 @@ exports.dashboard = function (req, res) {
 
     })
 
-    connection.query('select count(l_atividade.id_atividade) as total, ls_tipo_atividade.tipo_atividade from ls_tipo_atividade,l_atividade where l_atividade.id_tipo_atividade= ls_tipo_atividade.id_tipo_atividade group by tipo_atividade;', function (err, rows, fields) {
+    connection.query('select count(l_atividade.id_atividade) as total, ls_tipo_atividade.tipo_atividade from ls_tipo_atividade,l_atividade where l_atividade.id_tipo_atividade= ls_tipo_atividade.id_tipo_atividade and ls_tipo_atividade.id_tipo_atividade= 2 ', function (err, rows, fields) {
         if (!err) {
             console.log("entrei");
-            dados.tipoAtividade = rows
+            dados.tipoAtividade2 = rows
+
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+    
+    connection.query('select count(l_atividade.id_atividade) as total, ls_tipo_atividade.tipo_atividade from ls_tipo_atividade,l_atividade where l_atividade.id_tipo_atividade= ls_tipo_atividade.id_tipo_atividade and ls_tipo_atividade.id_tipo_atividade= 2 ', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.tipoAtividade3 = rows
+
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+    
+    connection.query('select count(l_atividade.id_atividade) as total, ls_tipo_atividade.tipo_atividade from ls_tipo_atividade,l_atividade where l_atividade.id_tipo_atividade= ls_tipo_atividade.id_tipo_atividade and ls_tipo_atividade.id_tipo_atividade= 2 ', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.tipoAtividade4 = rows
+
+        } else {
+            console.log('Error while performing Query.', err);
+        }
+
+    })
+    
+    connection.query('select count(l_atividade.id_atividade) as total, ls_tipo_atividade.tipo_atividade from ls_tipo_atividade,l_atividade where l_atividade.id_tipo_atividade= ls_tipo_atividade.id_tipo_atividade and ls_tipo_atividade.id_tipo_atividade= 2 ', function (err, rows, fields) {
+        if (!err) {
+            console.log("entrei");
+            dados.tipoAtividade5 = rows
 
         } else {
             console.log('Error while performing Query.', err);
