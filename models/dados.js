@@ -150,7 +150,7 @@ exports.registarUserAtividade = function (req, res) {
 exports.historicoRegisto = function (req, res) {
 
 
-    var query = "    SELECT titulo,tipo_atividade, DATE_FORMAT(dia_realizacao, '%d/%m/%Y %H:%i') AS data, cidade FROM l_atividade,ls_tipo_atividade, ls_empresa,  ls_agenda,  ls_registo, ls_localizacao,ls_utilizador, ls_contacto WHERE l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade  AND ls_registo.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao AND ls_registo.id_utilizador = ls_utilizador.id_utilizador  AND ls_utilizador.id_contacto = ls_contacto.id_contacto   AND ls_contacto.email = '" + req.session.username + "' AND ls_registo.id_atividade = l_atividade.id_atividade;"
+    var query = "    SELECT distinct titulo,tipo_atividade, DATE_FORMAT(dia_realizacao, '%d/%m/%Y %H:%i') AS data, cidade FROM l_atividade,ls_tipo_atividade, ls_empresa,  ls_agenda,  ls_registo, ls_localizacao,ls_utilizador, ls_contacto WHERE l_atividade.id_tipo_atividade = ls_tipo_atividade.id_tipo_atividade  AND ls_registo.id_agenda = ls_agenda.id_agenda  AND l_atividade.id_localizacao = ls_localizacao.id_localizacao AND ls_registo.id_utilizador = ls_utilizador.id_utilizador  AND ls_utilizador.id_contacto = ls_contacto.id_contacto   AND ls_contacto.email = '" + req.session.username + "' AND ls_registo.id_atividade = l_atividade.id_atividade;"
 
 
     queryStandard(query, req, res)
