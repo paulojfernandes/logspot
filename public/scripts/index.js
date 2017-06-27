@@ -3,14 +3,14 @@ $(document).ready(function () {
 
     $(document).on("click", "#user_import", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/importarUtilizadores.html')
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/importarUtilizadores.html')
     });
 
 
 
     $(document).on("click", "#user_admin_add", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/adicionarAdmin.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/adicionarAdmin.html');
     });
 
 
@@ -18,14 +18,14 @@ $(document).ready(function () {
 
     $(document).on("click", "#user_admin_alter", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/alterarAdmin.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/alterarAdmin.html');
     });
 
 
 
     $(document).on("click", "#act_list", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/listarAtividades.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/listarAtividades.html');
     });
 
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
     $(document).on("click", "#act_add", function () {
         $("#container").empty();
 
-        $("#container").load('https://logspot.herokuapp.com/static/views/adicionarAtividade.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/adicionarAtividade.html');
     });
 
 
@@ -41,12 +41,12 @@ $(document).ready(function () {
     $(document).on("click", "#help", function () {
         $("#container").empty();
 
-        $("#container").load('https://logspot.herokuapp.com/static/views/ajuda.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/ajuda.html');
     });
 
     $(document).on("click", "#act_alt", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/alterarAtividade.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/alterarAtividade.html');
     });
 
 
@@ -63,12 +63,12 @@ $(document).ready(function () {
 
     $(document).on("click", "#dadosPessoais", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/configDadosPessoais.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/configDadosPessoais.html');
     });
 
     $(document).on("click", "#alterPass", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/configPass.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/configPass.html');
     });
 
 
@@ -111,7 +111,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#dashboard", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/dashboard.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/dashboard.html');
     });
 
     $(document).on("click", "#voltarPagina", function () {
@@ -122,17 +122,17 @@ $(document).ready(function () {
 
     $(document).on("click", "#act_Qr", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/gerarQRCode.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/gerarQRCode.html');
     });
 
     $(document).on("click", "#error", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/error.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/error.html');
     });
 
     $(document).on("click", "#check", function () {
         $("#container").empty();
-        $("#container").load('https://logspot.herokuapp.com/static/views/check.html');
+        $("#container").load('https://logspot.herokuapp.com/static/views/novo/check.html');
     });
 
 
