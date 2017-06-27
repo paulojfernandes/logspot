@@ -35,14 +35,14 @@
 </div>
 <hr>
 <div id="dashGraph" class="row">
-       
 
-<div class="row">
+
+        <div class="row">
                 <div id="dashText2" class="col-md-5">
                         <h3> Total Registo nos últimos dias </h3>
 
-                        <p > Legenda :</p>
-                        <p> 1 Dia :  <span class="box pink "> &nbsp &nbsp &nbsp &nbsp &nbsp         </span></p>
+                        <p> Legenda :</p>
+                        <p> 1 Dia : <span class="box pink "> &nbsp &nbsp &nbsp &nbsp &nbsp         </span></p>
                         <p> 2 Dias: <span class="box blue "> &nbsp &nbsp &nbsp &nbsp &nbsp  </span></p>
                         <p> 3 Dias: <span class="box yellow "> &nbsp &nbsp &nbsp &nbsp &nbsp </span></p>
 
@@ -113,9 +113,10 @@
                                 $("#totalRegistos").append(data.totalRegistos[
                                         0].total)
 
-
-                                chartCircle(ctx, "", [40, 50, 46, 88])
-                                //chartCircle(ctx3, "", [4, 4, 6, 8])
+                                chartCircle(ctx, "", [data.totalA1D[0].total,
+                                        data.totalA2D[0].total,
+                                        data.totalA3D[0].total
+                                ])
 
                         }
                 })
