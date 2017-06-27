@@ -154,7 +154,7 @@ $(document).ready(function () {
         //$(this).parent().parent().find("#lat")
 
         console.log("lat", )
-        modal.append('<img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=' + lat + ',' + lng + '&zoom=15&size=700x700&sensor=false&markers=color:red%7C' + lat + ',' + lng + ' &key=key=AIzaSyC5wc3qnKNCzEWhf-5LMO6ik1zcBkyW5kw" >')
+        modal.append('<img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=' + lat + ',' + lng + '&zoom=15&size=700x700&sensor=false&markers=color:red%7C' + lat + ',' + lng + ' &key=AIzaSyC5wc3qnKNCzEWhf-5LMO6ik1zcBkyW5kw" >')
 
 
     });
